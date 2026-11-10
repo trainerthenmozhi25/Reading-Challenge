@@ -210,31 +210,73 @@
         </div>
       </div>
 
-      <!-- CENTERED ADMIN REGISTRATION FORM -->
+      <!-- CENTERED ADMIN REGISTRATION FORM TABLE (ONE BELOW THE OTHER) -->
       <div id="adminAuthBox" class="bg-sky-50 border border-sky-300 rounded-2xl p-6 sm:p-8 mb-6 no-print text-center max-w-xl mx-auto shadow-sm">
         
-        <!-- Centered Heading: Admin registration -->
         <h4 class="text-2xl font-extrabold text-sky-950 uppercase tracking-wide mb-6">
-          Admin registration
+          Admin Registration Form
         </h4>
         
-        <form id="adminLoginForm" onsubmit="handleAdminLogin(event)" class="space-y-5">
-          
-          <!-- Centered Username & Password Fields -->
-          <div class="space-y-4 text-left max-w-md mx-auto">
-            <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Username * (Only 20 characters long)</label>
-              <input type="text" id="adminUsername" required maxlength="20" placeholder="Enter Username (Max 20 chars)" class="w-full px-4 py-2.5 border border-sky-300 rounded-xl text-xs bg-white focus:ring-2 focus:ring-sky-600">
-            </div>
+        <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+          <div class="overflow-x-auto mb-6">
+            <table class="w-full text-left text-xs bg-white border border-sky-200 rounded-xl overflow-hidden shadow-sm">
+              <tbody class="divide-y divide-sky-100">
+                
+                <!-- Row 1: Username -->
+                <tr>
+                  <td class="p-3 font-extrabold text-slate-700 uppercase bg-sky-100/70 w-1/3">Username *</td>
+                  <td class="p-3">
+                    <input type="text" id="adminUsername" required maxlength="20" placeholder="Max 20 characters" class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-slate-50 focus:ring-2 focus:ring-sky-600">
+                  </td>
+                </tr>
 
-            <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Password * (Alphanumeric 8 characters)</label>
-              <input type="password" id="adminPassword" required maxlength="8" placeholder="Exact 8 Alphanumeric Chars" class="w-full px-4 py-2.5 border border-sky-300 rounded-xl text-xs bg-white focus:ring-2 focus:ring-sky-600">
-            </div>
+                <!-- Row 2: Password -->
+                <tr>
+                  <td class="p-3 font-extrabold text-slate-700 uppercase bg-sky-100/70">Password *</td>
+                  <td class="p-3">
+                    <input type="password" id="adminPassword" required maxlength="8" placeholder="Exact 8 alphanumeric chars" class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-slate-50 focus:ring-2 focus:ring-sky-600">
+                  </td>
+                </tr>
+
+                <!-- Row 3: Department & Branch -->
+                <tr>
+                  <td class="p-3 font-extrabold text-slate-700 uppercase bg-sky-100/70">Department & Branch *</td>
+                  <td class="p-3">
+                    <select id="adminDeptFilter" required class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-slate-50 focus:ring-2 focus:ring-sky-600 font-semibold">
+                      <option value="ALL">All Departments</option>
+                      <option value="B.E. CSE">B.E. Computer Science & Engineering (CSE)</option>
+                      <option value="B.Tech IT">B.Tech Information Technology (IT)</option>
+                      <option value="B.Tech AI&DS">B.Tech AI & Data Science (AI&DS)</option>
+                      <option value="B.E. Cyber Security">B.E. Cyber Security</option>
+                      <option value="B.E. AIML">B.E. AI & Machine Learning (AIML)</option>
+                      <option value="B.E. ECE">B.E. Electronics & Communication (ECE)</option>
+                      <option value="B.E. EEE">B.E. Electrical & Electronics (EEE)</option>
+                      <option value="B.E. Mechanical">B.E. Mechanical Engineering</option>
+                      <option value="B.E. Civil">B.E. Civil Engineering</option>
+                    </select>
+                  </td>
+                </tr>
+
+                <!-- Row 4: Year of Study -->
+                <tr>
+                  <td class="p-3 font-extrabold text-slate-700 uppercase bg-sky-100/70">Year of Study *</td>
+                  <td class="p-3">
+                    <select id="adminYearFilter" required class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-slate-50 focus:ring-2 focus:ring-sky-600 font-semibold">
+                      <option value="ALL">All Years</option>
+                      <option value="1st Year">1st Year</option>
+                      <option value="2nd Year">2nd Year</option>
+                      <option value="3rd Year">3rd Year</option>
+                      <option value="4th Year">4th Year</option>
+                    </select>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
           </div>
 
           <!-- Centered Submit and Cancel Buttons -->
-          <div class="flex justify-center gap-4 pt-2">
+          <div class="flex justify-center gap-4">
             <button type="submit" class="bg-sky-700 hover:bg-sky-800 text-white font-extrabold text-xs px-6 py-2.5 rounded-xl shadow-md transition">
               Submit
             </button>
@@ -253,34 +295,14 @@
 
       <!-- Admin Content (Visible upon Admin Registration/Login) -->
       <div id="adminContent" class="hidden">
-        <h4 class="text-lg font-bold text-slate-900 mb-4 uppercase tracking-wide"><i class="fa-solid fa-book-bookmark text-sky-700 mr-2"></i>Registered Books & Evaluation</h4>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 no-print">
-          <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Filter Dept-Wise</label>
-            <select id="deptFilter" onchange="filterAdminData()" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-slate-50">
-              <option value="ALL">All Departments</option>
-              <option value="B.E. CSE">B.E. CSE</option>
-              <option value="B.Tech IT">B.Tech IT</option>
-              <option value="B.Tech AI&DS">B.Tech AI&DS</option>
-              <option value="B.E. Cyber Security">B.E. Cyber Security</option>
-              <option value="B.E. AIML">B.E. AIML</option>
-              <option value="B.E. ECE">B.E. ECE</option>
-              <option value="B.E. EEE">B.E. EEE</option>
-              <option value="B.E. Mechanical">B.E. Mechanical</option>
-              <option value="B.E. Civil">B.E. Civil</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Search Student</label>
-            <input type="text" id="searchInput" onkeyup="filterAdminData()" placeholder="Name or Reg No..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-slate-50">
-          </div>
-
-          <div class="flex items-end">
-            <div class="bg-sky-50 border border-sky-200 rounded-lg p-2.5 w-full text-center">
-              <span class="text-xs text-sky-800 font-bold uppercase">Total Registered Students:</span>
-              <span id="adminStudentCount" class="text-lg font-extrabold text-sky-900 ml-2">0</span>
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-4 gap-2">
+          <h4 class="text-lg font-bold text-slate-900 uppercase tracking-wide"><i class="fa-solid fa-book-bookmark text-sky-700 mr-2"></i>Registered Books & Evaluation</h4>
+          
+          <div class="flex items-center gap-3">
+            <input type="text" id="searchInput" onkeyup="filterAdminData()" placeholder="Search Name or Reg No..." class="px-3 py-1.5 border border-slate-300 rounded-lg text-xs bg-slate-50">
+            <div class="bg-sky-50 border border-sky-200 rounded-lg px-3 py-1.5 text-center">
+              <span class="text-xs text-sky-800 font-bold uppercase">Students:</span>
+              <span id="adminStudentCount" class="text-sm font-extrabold text-sky-900 ml-1">0</span>
             </div>
           </div>
         </div>
@@ -358,7 +380,7 @@
       document.getElementById('adminWelcomeBanner').classList.remove('hidden');
       document.getElementById('adminWelcomeText').innerText = `Welcome ${uname}!`;
       document.getElementById('adminContent').classList.remove('hidden');
-      renderAdminTable(students);
+      filterAdminData();
     }
 
     function adminLogout() {
@@ -472,7 +494,7 @@
 
       localStorage.setItem('srm_students_db', JSON.stringify(students));
       loadStudentPortal(activeStudent);
-      renderAdminTable(students);
+      filterAdminData();
 
       alert(`Registration Submitted successfully for ${name}!`);
       document.getElementById('student-portal').scrollIntoView({ behavior: 'smooth' });
@@ -572,18 +594,35 @@
         students[idx] = activeStudent;
         localStorage.setItem('srm_students_db', JSON.stringify(students));
         loadStudentPortal(activeStudent);
-        renderAdminTable(students);
+        filterAdminData();
         alert(`Progress updated for "${activeStudent.books[bookIdx].name}"!`);
       }
     }
 
+    function filterAdminData() {
+      const dept = document.getElementById('adminDeptFilter').value;
+      const year = document.getElementById('adminYearFilter').value;
+      const searchElem = document.getElementById('searchInput');
+      const query = searchElem ? searchElem.value.toLowerCase() : '';
+
+      const filtered = students.filter(s => {
+        const matchesDept = (dept === 'ALL' || s.dept === dept);
+        const matchesYear = (year === 'ALL' || s.year === year);
+        const matchesSearch = s.name.toLowerCase().includes(query) || s.regNo.toLowerCase().includes(query);
+        return matchesDept && matchesYear && matchesSearch;
+      });
+
+      renderAdminTable(filtered);
+    }
+
     function renderAdminTable(data) {
       const tbody = document.getElementById('adminTableBody');
+      if(!tbody) return;
       tbody.innerHTML = '';
       document.getElementById('adminStudentCount').innerText = data.length;
 
       if(data.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-500 font-semibold">No registered students found.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-500 font-semibold">No registered students found matching selected filters.</td></tr>`;
         return;
       }
 
@@ -646,22 +685,9 @@
           loadStudentPortal(activeStudent);
         }
         
-        renderAdminTable(students);
+        filterAdminData();
         alert(`Presentation Mark of ${markVal} assigned by Admin "${activeAdminUser}" for "${students[sIdx].books[bookIdx].name}".`);
       }
-    }
-
-    function filterAdminData() {
-      const dept = document.getElementById('deptFilter').value;
-      const query = document.getElementById('searchInput').value.toLowerCase();
-
-      const filtered = students.filter(s => {
-        const matchesDept = (dept === 'ALL' || s.dept === dept);
-        const matchesSearch = s.name.toLowerCase().includes(query) || s.regNo.toLowerCase().includes(query);
-        return matchesDept && matchesSearch;
-      });
-
-      renderAdminTable(filtered);
     }
 
     function exportToCSV() {
@@ -682,6 +708,4 @@
   </script>
 </body>
 </html>
-
-
-Scroll to the bottom and click Commit changes.
+Steps to U
