@@ -25,12 +25,13 @@
         <img src="logo.png" alt="SRM Madurai College Header Banner" class="h-14 sm:h-20 object-contain w-auto" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x100?text=SRM+MADURAI+COLLEGE+FOR+ENGINEERING+AND+TECHNOLOGY';">
       </div>
 
-      <!-- Navigation -->
+      <!-- Navigation (Registration Menu Removed) -->
       <nav class="flex items-center gap-6 text-sm font-semibold text-sky-900 mt-1">
-        <a href="#register" class="hover:text-sky-600 transition"><i class="fa-solid fa-user-plus mr-1"></i> Registration</a>
-        <a href="#student-portal" class="hover:text-sky-600 transition"><i class="fa-solid fa-book-open mr-1"></i> Student Portal</a>
-        <a href="#admin" class="bg-sky-700 hover:bg-sky-800 text-white font-semibold text-sm px-4 py-2 rounded-lg shadow-md transition">
-          <i class="fa-solid fa-user-shield mr-1"></i> Admin Portal
+        <a href="#student-portal" class="hover:text-sky-600 transition text-base font-bold">
+          <i class="fa-solid fa-user-graduate mr-1.5 text-sky-700"></i> Student Portal
+        </a>
+        <a href="#admin" class="bg-sky-700 hover:bg-sky-800 text-white font-semibold text-base px-5 py-2 rounded-lg shadow-md transition">
+          <i class="fa-solid fa-user-shield mr-1.5"></i> Admin Portal
         </a>
       </nav>
     </div>
@@ -39,10 +40,11 @@
   <!-- Hero Section -->
   <section class="relative bg-sky-100 py-10 border-b border-sky-200 no-print text-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="inline-flex items-center gap-2 bg-sky-200 border border-sky-300 text-sky-950 text-base sm:text-xl font-extrabold px-6 py-2 rounded-full mb-4 shadow-sm">
-        <i class="fa-solid fa-award text-sky-700 text-2xl"></i> SRM Madurai Campus Annual Competition
+      <!-- Big Font SRM Madurai Campus Annual Competition -->
+      <div class="inline-flex items-center gap-2 bg-sky-200 border border-sky-300 text-sky-950 text-xl sm:text-3xl font-black px-8 py-3 rounded-full mb-4 shadow-sm">
+        <i class="fa-solid fa-award text-sky-700 text-3xl"></i> SRM Madurai Campus Annual Competition
       </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">
+      <h2 class="text-3xl sm:text-5xl font-black text-slate-900">
         Reading Challenge <span class="text-sky-700">2026</span>
       </h2>
     </div>
@@ -51,9 +53,12 @@
   <!-- SECTION 1: STUDENT REGISTRATION FORM -->
   <section id="register" class="py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 no-print">
     <div class="bg-sky-200/90 border border-sky-300 rounded-3xl p-6 sm:p-10 shadow-md">
+      
+      <!-- Big Font Student Portal Header & Next Line Registration Form -->
       <div class="text-center mb-8">
-        <h3 class="text-2xl font-bold text-slate-900">Student Portal Registration</h3>
-        <p class="text-sky-950 font-bold text-xs sm:text-sm mt-1 uppercase tracking-wide">
+        <h3 class="text-3xl sm:text-4xl font-extrabold text-sky-950">Student Portal</h3>
+        <h4 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Registration Form</h4>
+        <p class="text-sky-900 font-bold text-xs sm:text-sm mt-2 uppercase tracking-wide">
           SRM Madurai College for Engineering and Technology
         </p>
       </div>
@@ -103,36 +108,41 @@
 
         <hr class="border-sky-300 my-4">
 
-        <!-- Dynamic Book Entries Section (Up to 20 Books) -->
+        <!-- Add Reading Books Header & Counter -->
         <div class="flex items-center justify-between">
-          <h4 class="font-bold text-slate-900 text-sm uppercase">Add Reading Books (Max 20 Books)</h4>
-          <span class="text-xs font-semibold text-sky-800" id="bookCounter">Books Added: 1/20</span>
+          <h4 class="font-extrabold text-slate-900 text-base uppercase">Add Reading Books (Max 20 Books)</h4>
+          <span class="text-xs font-bold text-sky-900" id="bookCounter">Books Added: 1/20</span>
         </div>
 
         <div id="bookContainer" class="space-y-4">
-          <!-- Book Entry Row 1 -->
-          <div class="book-row bg-sky-100 p-4 rounded-2xl border border-sky-300 grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div>
+          <!-- Book Entry Row 1 with Delete Option -->
+          <div class="book-row bg-sky-100 p-4 rounded-2xl border border-sky-300 grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
+            <div class="sm:col-span-4">
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Book Name *</label>
               <input type="text" class="book-name w-full px-3 py-2 rounded-lg border border-sky-300 bg-white text-xs" required placeholder="e.g. Clean Code">
             </div>
-            <div>
+            <div class="sm:col-span-4">
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Author of the Book *</label>
               <input type="text" class="book-author w-full px-3 py-2 rounded-lg border border-sky-300 bg-white text-xs" required placeholder="e.g. Robert C. Martin">
             </div>
-            <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">No. of Pages (Numbers only) *</label>
-              <input type="number" min="1" class="book-pages w-full px-3 py-2 rounded-lg border border-sky-300 bg-white text-xs" required placeholder="e.g. 464">
+            <div class="sm:col-span-3">
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">No. of Pages *</label>
+              <input type="number" min="1" class="book-pages w-full px-3 py-2 rounded-lg border border-sky-300 bg-white text-xs" required placeholder="Pages (Numbers only)">
+            </div>
+            <div class="sm:col-span-1 text-right">
+              <button type="button" onclick="deleteBookRow(this)" class="w-full bg-red-100 hover:bg-red-200 text-red-700 font-bold py-2 rounded-lg text-xs border border-red-300 transition" title="Delete Book">
+                <i class="fa-solid fa-trash"></i>
+              </button>
             </div>
           </div>
         </div>
 
-        <button type="button" onclick="addBookRow()" id="addBookBtn" class="bg-sky-200 hover:bg-sky-300 text-sky-900 font-bold text-xs px-4 py-2 rounded-lg border border-sky-400 transition">
+        <button type="button" onclick="addBookRow()" id="addBookBtn" class="bg-sky-700 hover:bg-sky-800 text-white font-bold text-xs px-4 py-2.5 rounded-lg shadow transition">
           <i class="fa-solid fa-plus mr-1"></i> Add Another Book
         </button>
 
-        <button type="submit" class="w-full bg-sky-700 hover:bg-sky-800 text-white font-bold py-3 rounded-xl shadow-md transition text-sm mt-4">
-          Submit & Create Student Dashboard
+        <button type="submit" class="w-full bg-sky-800 hover:bg-sky-900 text-white font-extrabold py-3.5 rounded-xl shadow-lg transition text-base mt-4">
+          Submit Registration & Generate Portal
         </button>
       </form>
     </div>
@@ -142,24 +152,23 @@
   <section id="student-portal" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 no-print">
     <div class="bg-white border border-sky-300 rounded-3xl p-6 sm:p-8 shadow-lg">
       
-      <!-- Top Banner: Student Info & Date/Time -->
+      <!-- Top Banner: Right Corner Details -->
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center bg-sky-700 text-white p-6 rounded-2xl mb-8 shadow-md">
         <div>
-          <h2 class="text-2xl font-extrabold" id="portalWelcome">Welcome, Student!</h2>
+          <h2 class="text-2xl sm:text-3xl font-extrabold" id="portalWelcome">Welcome, Student!</h2>
           <p class="text-sky-200 text-xs mt-1">SRM Madurai College for Engineering and Technology — Student Dashboard</p>
         </div>
 
-        <!-- Right Corner Header Details -->
-        <div class="mt-4 md:mt-0 text-left md:text-right text-xs bg-sky-800/80 p-3 rounded-xl border border-sky-600">
+        <div class="mt-4 md:mt-0 text-left md:text-right text-xs bg-sky-800/90 p-3 rounded-xl border border-sky-600">
           <p><span class="font-bold text-sky-300">Register No:</span> <span id="portalRegNo">N/A</span></p>
           <p><span class="font-bold text-sky-300">Dept & Branch:</span> <span id="portalDept">N/A</span></p>
           <p><span class="font-bold text-sky-300">Date & Login Time:</span> <span id="portalDateTime">N/A</span></p>
         </div>
       </div>
 
-      <h3 class="text-xl font-bold text-slate-900 mb-4"><i class="fa-solid fa-list-check mr-2 text-sky-700"></i>My Book Reading Status & Submissions</h3>
+      <h3 class="text-xl font-extrabold text-slate-900 mb-4"><i class="fa-solid fa-book-open mr-2 text-sky-700"></i>My Book Reading Status</h3>
 
-      <!-- Book Reading Status Table -->
+      <!-- Student Book Reading Status Table -->
       <div class="overflow-x-auto border border-slate-200 rounded-xl">
         <table class="w-full text-left text-xs text-slate-700">
           <thead class="bg-sky-100 text-sky-950 font-bold uppercase text-[11px] border-b border-sky-300">
@@ -170,14 +179,14 @@
               <th class="p-3">No. of Pages</th>
               <th class="p-3">Status of Reading</th>
               <th class="p-3">Date of Completion</th>
-              <th class="p-3">Handwritten Review (25-300 Words)</th>
-              <th class="p-3">Presentation Mark (Judges)</th>
+              <th class="p-3">Handwritten Review (250-300 Words)</th>
+              <th class="p-3">Presentation Mark</th>
               <th class="p-3">Action</th>
             </tr>
           </thead>
           <tbody id="studentBookTableBody" class="divide-y divide-slate-200 bg-white">
             <tr>
-              <td colspan="9" class="p-4 text-center text-slate-500">Please register above to load your reading tracker.</td>
+              <td colspan="9" class="p-4 text-center text-slate-500 font-semibold">Please complete the registration form above to load your reading tracker.</td>
             </tr>
           </tbody>
         </table>
@@ -194,7 +203,7 @@
       <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-200 pb-6 mb-6 gap-4">
         <div>
           <span class="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full uppercase">Faculty & Admin Panel</span>
-          <h3 class="text-2xl font-extrabold text-slate-900 mt-1">Student Registrations & Presentation Evaluation</h3>
+          <h3 class="text-2xl font-extrabold text-slate-900 mt-1">Registered Students List & Multi-Book Evaluation</h3>
           <p class="text-slate-500 text-xs">SRM Madurai College for Engineering and Technology — Reading Challenge 2026</p>
         </div>
 
@@ -208,7 +217,7 @@
         </div>
       </div>
 
-      <!-- Filters -->
+      <!-- Admin Filters -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 no-print">
         <div>
           <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Filter Dept-Wise</label>
@@ -239,18 +248,17 @@
         </div>
       </div>
 
-      <!-- Data Table -->
+      <!-- Admin Registered Students Multi-Book Table -->
       <div class="overflow-x-auto border border-slate-200 rounded-xl">
         <table class="w-full text-left text-xs text-slate-700">
           <thead class="bg-sky-700 text-white font-bold uppercase text-[11px]">
             <tr>
               <th class="p-3">Reg No</th>
               <th class="p-3">Student Name</th>
-              <th class="p-3">Department</th>
+              <th class="p-3">Department & Branch</th>
               <th class="p-3">Year</th>
-              <th class="p-3">Total Books</th>
-              <th class="p-3">Book Details</th>
-              <th class="p-3">Assign Presentation Mark</th>
+              <th class="p-3">Registration Timestamp</th>
+              <th class="p-3">Registered Books & Evaluation</th>
             </tr>
           </thead>
           <tbody id="adminTableBody" class="divide-y divide-slate-200 bg-white">
@@ -287,23 +295,44 @@
 
       const newIndex = currentCount + 1;
       const newRow = document.createElement('div');
-      newRow.className = "book-row bg-sky-100 p-4 rounded-2xl border border-sky-300 grid grid-cols-1 sm:grid-cols-3 gap-4";
+      newRow.className = "book-row bg-sky-100 p-4 rounded-2xl border border-sky-300 grid grid-cols-1 sm:grid-cols-12 gap-3 items-end";
       newRow.innerHTML = `
-        <div>
+        <div class="sm:col-span-4">
           <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Book Name *</label>
           <input type="text" class="book-name w-full px-3 py-2 rounded-lg border border-sky-300 bg-white text-xs" required placeholder="Book ${newIndex} Title">
         </div>
-        <div>
+        <div class="sm:col-span-4">
           <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Author of the Book *</label>
           <input type="text" class="book-author w-full px-3 py-2 rounded-lg border border-sky-300 bg-white text-xs" required placeholder="Author ${newIndex} Name">
         </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">No. of Pages (Numbers only) *</label>
-          <input type="number" min="1" class="book-pages w-full px-3 py-2 rounded-lg border border-sky-300 bg-white text-xs" required placeholder="Total pages">
+        <div class="sm:col-span-3">
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">No. of Pages *</label>
+          <input type="number" min="1" class="book-pages w-full px-3 py-2 rounded-lg border border-sky-300 bg-white text-xs" required placeholder="Pages (Numbers only)">
+        </div>
+        <div class="sm:col-span-1 text-right">
+          <button type="button" onclick="deleteBookRow(this)" class="w-full bg-red-100 hover:bg-red-200 text-red-700 font-bold py-2 rounded-lg text-xs border border-red-300 transition" title="Delete Book">
+            <i class="fa-solid fa-trash"></i>
+          </button>
         </div>
       `;
       container.appendChild(newRow);
-      document.getElementById('bookCounter').innerText = `Books Added: ${newIndex}/20`;
+      updateBookCounter();
+    }
+
+    // Delete dynamic book row
+    function deleteBookRow(btn) {
+      const container = document.getElementById('bookContainer');
+      if(container.children.length <= 1) {
+        alert("At least one book entry is required.");
+        return;
+      }
+      btn.closest('.book-row').remove();
+      updateBookCounter();
+    }
+
+    function updateBookCounter() {
+      const count = document.getElementById('bookContainer').children.length;
+      document.getElementById('bookCounter').innerText = `Books Added: ${count}/20`;
     }
 
     // Handle Registration Submission
@@ -330,8 +359,10 @@
           status: "Not Completed",
           completionDate: "",
           reviewText: "",
-          reviewFile: "",
-          presentationMark: "Pending Evaluation"
+          fileUrl: "",
+          fileName: "",
+          presentationMark: "Pending",
+          saved: false
         });
       });
 
@@ -347,7 +378,6 @@
         books: bookList
       };
 
-      // Check if student exists or push new
       const existingIdx = students.findIndex(s => s.regNo === regNo);
       if(existingIdx >= 0) {
         students[existingIdx] = activeStudent;
@@ -376,29 +406,41 @@
       student.books.forEach((b, idx) => {
         const row = document.createElement('tr');
         row.className = "hover:bg-sky-50 border-b border-slate-200";
+
+        const viewBtnHtml = b.fileUrl 
+          ? `<a href="${b.fileUrl}" target="_blank" class="ml-2 bg-sky-200 hover:bg-sky-300 text-sky-900 font-bold px-2 py-0.5 rounded text-[10px] inline-flex items-center gap-1"><i class="fa-solid fa-eye"></i> View</a>`
+          : `<span id="view_${idx}"></span>`;
+
+        const saveBtnHtml = b.saved 
+          ? `<button disabled class="bg-gray-400 text-white font-bold px-3 py-1.5 rounded text-xs cursor-not-allowed flex items-center gap-1"><i class="fa-solid fa-check"></i> Saved</button>`
+          : `<button onclick="saveSingleBookProgress(${idx})" id="saveBtn_${idx}" class="bg-sky-700 hover:bg-sky-800 text-white font-bold px-3 py-1.5 rounded text-xs shadow">Save</button>`;
+
         row.innerHTML = `
           <td class="p-3 font-bold">${idx + 1}</td>
           <td class="p-3 font-semibold text-slate-900">${b.name}</td>
           <td class="p-3">${b.author}</td>
           <td class="p-3 font-bold text-center">${b.pages}</td>
           <td class="p-3">
-            <select onchange="updateBookStatus(${idx}, 'status', this.value)" class="px-2 py-1 border rounded bg-slate-50 text-xs font-semibold">
+            <select onchange="updateBookField(${idx}, 'status', this.value)" class="px-2 py-1 border border-slate-300 rounded bg-white text-xs font-semibold">
               <option value="Not Completed" ${b.status === 'Not Completed' ? 'selected' : ''}>Not Completed</option>
               <option value="Completed" ${b.status === 'Completed' ? 'selected' : ''}>Completed</option>
             </select>
           </td>
           <td class="p-3">
-            <input type="date" value="${b.completionDate}" onchange="updateBookStatus(${idx}, 'completionDate', this.value)" class="px-2 py-1 border rounded bg-slate-50 text-xs">
+            <input type="date" value="${b.completionDate}" onchange="updateBookField(${idx}, 'completionDate', this.value)" class="px-2 py-1 border border-slate-300 rounded bg-white text-xs">
           </td>
           <td class="p-3">
-            <textarea onchange="validateReviewWordCount(${idx}, this.value)" placeholder="Write handwritten review (25-300 words)..." class="w-full p-2 border rounded text-xs bg-slate-50 mb-1" rows="2">${b.reviewText}</textarea>
-            <input type="file" accept="image/*,.pdf" onchange="uploadReviewFile(${idx}, this)" class="text-[10px] text-slate-500">
+            <textarea onchange="validateReviewWordCount(${idx}, this.value)" placeholder="Write review (250-300 words)..." class="w-full p-2 border border-slate-300 rounded text-xs bg-white mb-1.5" rows="2">${b.reviewText}</textarea>
+            <div class="flex items-center">
+              <input type="file" accept="image/*,.pdf" onchange="handleFileUpload(${idx}, this)" class="text-[10px] text-slate-500">
+              ${viewBtnHtml}
+            </div>
           </td>
           <td class="p-3 font-bold text-sky-800 text-center">
-            ${b.presentationMark !== 'Pending Evaluation' ? `<span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">${b.presentationMark} Marks</span>` : `<span class="text-slate-400">Pending</span>`}
+            ${b.presentationMark !== 'Pending' ? `<span class="bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full border border-emerald-300 font-bold">${b.presentationMark} Marks</span>` : `<span class="text-slate-400 font-medium">Pending</span>`}
           </td>
           <td class="p-3">
-            <button onclick="saveStudentProgress()" class="bg-sky-700 hover:bg-sky-800 text-white font-bold px-3 py-1 rounded text-xs">Save</button>
+            ${saveBtnHtml}
           </td>
         `;
         tbody.appendChild(row);
@@ -407,78 +449,96 @@
 
     function validateReviewWordCount(bookIdx, text) {
       const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
-      if(text.length > 0 && (words < 25 || words > 300)) {
-        alert(`Word count notice: Review has ${words} words. Required length is between 25 and 300 words.`);
+      if(text.length > 0 && (words < 250 || words > 300)) {
+        alert(`Notice: Handwritten review currently has ${words} words. The required length is between 250 and 300 words.`);
       }
       activeStudent.books[bookIdx].reviewText = text;
     }
 
-    function uploadReviewFile(bookIdx, input) {
+    function handleFileUpload(bookIdx, input) {
       if(input.files && input.files[0]) {
-        activeStudent.books[bookIdx].reviewFile = input.files[0].name;
-        alert(`Review file "${input.files[0].name}" attached successfully.`);
+        const file = input.files[0];
+        const fileUrl = URL.createObjectURL(file);
+        activeStudent.books[bookIdx].fileUrl = fileUrl;
+        activeStudent.books[bookIdx].fileName = file.name;
+        
+        loadStudentPortal(activeStudent);
       }
     }
 
-    function updateBookStatus(bookIdx, key, val) {
+    function updateBookField(bookIdx, key, val) {
       activeStudent.books[bookIdx][key] = val;
     }
 
-    function saveStudentProgress() {
+    function saveSingleBookProgress(bookIdx) {
+      activeStudent.books[bookIdx].saved = true;
       const idx = students.findIndex(s => s.regNo === activeStudent.regNo);
       if(idx >= 0) {
         students[idx] = activeStudent;
         localStorage.setItem('srm_students_db', JSON.stringify(students));
+        loadStudentPortal(activeStudent);
         renderAdminTable(students);
-        alert("Your book reading progress and reviews have been updated successfully!");
+        alert(`Book "${activeStudent.books[bookIdx].name}" progress saved!`);
       }
     }
 
-    // Admin Table Render
+    // Render Admin Table with Multi-Book details
     function renderAdminTable(data) {
       const tbody = document.getElementById('adminTableBody');
       tbody.innerHTML = '';
       document.getElementById('adminStudentCount').innerText = data.length;
 
       if(data.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-slate-500 font-semibold">No registered students found.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-500 font-semibold">No registered students found.</td></tr>`;
         return;
       }
 
       data.forEach(s => {
-        const booksSummary = s.books.map(b => `${b.name} (${b.status})`).join(', ');
+        let booksSubTable = `
+          <div class="space-y-2 py-1">
+        `;
+        
+        s.books.forEach((b, bIdx) => {
+          booksSubTable += `
+            <div class="bg-sky-50 border border-sky-200 p-2.5 rounded-lg text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <p class="font-bold text-slate-900">${bIdx + 1}. ${b.name} <span class="font-normal text-slate-600">(Author: ${b.author} | Pages: ${b.pages})</span></p>
+                <p class="text-[11px] text-slate-500">Status: <strong>${b.status}</strong> | Completed: <strong>${b.completionDate || 'N/A'}</strong></p>
+              </div>
+              <div class="flex items-center gap-2">
+                <input type="number" placeholder="Mark" id="mark_${s.regNo}_${bIdx}" value="${b.presentationMark !== 'Pending' ? b.presentationMark : ''}" class="w-16 px-2 py-1 border rounded text-xs bg-white font-bold" min="0" max="100">
+                <button onclick="assignBookMark('${s.regNo}', ${bIdx})" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-2.5 py-1 rounded text-xs shadow">Save Mark</button>
+              </div>
+            </div>
+          `;
+        });
+
+        booksSubTable += `</div>`;
+
         const row = document.createElement('tr');
         row.className = "hover:bg-sky-50 transition border-b border-slate-200";
         row.innerHTML = `
-          <td class="p-3 font-bold">${s.regNo}</td>
-          <td class="p-3 font-semibold">${s.name}</td>
+          <td class="p-3 font-extrabold text-slate-900">${s.regNo}</td>
+          <td class="p-3 font-bold">${s.name}</td>
           <td class="p-3"><span class="bg-sky-100 text-sky-800 font-bold px-2 py-0.5 rounded text-[11px]">${s.dept}</span></td>
-          <td class="p-3">${s.year}</td>
-          <td class="p-3 text-center font-bold">${s.books.length}</td>
-          <td class="p-3 text-xs text-slate-600 max-w-xs truncate">${booksSummary}</td>
-          <td class="p-3">
-            <div class="flex items-center gap-2">
-              <input type="number" placeholder="Marks" id="mark_${s.regNo}" class="w-20 px-2 py-1 border rounded text-xs" min="0" max="100">
-              <button onclick="assignMark('${s.regNo}')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-2.5 py-1 rounded text-xs">Assign</button>
-            </div>
-          </td>
+          <td class="p-3 font-semibold">${s.year}</td>
+          <td class="p-3 text-xs text-slate-600 font-medium">${s.dateTime}</td>
+          <td class="p-3">${booksSubTable}</td>
         `;
         tbody.appendChild(row);
       });
     }
 
-    function assignMark(regNo) {
-      const markVal = document.getElementById(`mark_${regNo}`).value;
+    function assignBookMark(regNo, bookIdx) {
+      const markVal = document.getElementById(`mark_${regNo}_${bookIdx}`).value;
       if(!markVal) {
-        alert("Please enter a mark before assigning.");
+        alert("Please enter a mark before saving.");
         return;
       }
 
       const sIdx = students.findIndex(s => s.regNo === regNo);
       if(sIdx >= 0) {
-        students[sIdx].books.forEach(b => {
-          b.presentationMark = markVal;
-        });
+        students[sIdx].books[bookIdx].presentationMark = markVal;
         localStorage.setItem('srm_students_db', JSON.stringify(students));
         
         if(activeStudent && activeStudent.regNo === regNo) {
@@ -486,7 +546,7 @@
           loadStudentPortal(activeStudent);
         }
         
-        alert(`Presentation Mark of ${markVal} assigned to Register No: ${regNo}!`);
+        alert(`Presentation Mark of ${markVal} assigned for "${students[sIdx].books[bookIdx].name}" (Reg No: ${regNo})`);
       }
     }
 
@@ -504,10 +564,10 @@
     }
 
     function exportToCSV() {
-      let csv = "data:text/csv;charset=utf-8,Register No,Student Name,Department,Year,Book Name,Author,Pages,Status,Completion Date,Review Words,Presentation Mark\n";
+      let csv = "data:text/csv;charset=utf-8,Register No,Student Name,Department,Year,Registration Timestamp,Book Name,Author of Book,No of Pages,Status of Reading,Completion Date,Presentation Mark\n";
       students.forEach(s => {
         s.books.forEach(b => {
-          csv += `"${s.regNo}","${s.name}","${s.dept}","${s.year}","${b.name}","${b.author}","${b.pages}","${b.status}","${b.completionDate}","${b.reviewText.length}","${b.presentationMark}"\n`;
+          csv += `"${s.regNo}","${s.name}","${s.dept}","${s.year}","${s.dateTime}","${b.name}","${b.author}","${b.pages}","${b.status}","${b.completionDate}","${b.presentationMark}"\n`;
         });
       });
       const encodedUri = encodeURI(csv);
