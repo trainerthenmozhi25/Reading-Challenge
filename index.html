@@ -53,7 +53,6 @@
   <section id="register" class="py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 no-print">
     <div class="bg-sky-200/90 border border-sky-300 rounded-3xl p-6 sm:p-10 shadow-md">
       
-      <!-- Simplified Header -->
       <div class="text-center mb-8">
         <h3 class="text-3xl sm:text-4xl font-extrabold text-sky-950 uppercase tracking-wide">Registration form</h3>
       </div>
@@ -103,7 +102,6 @@
 
         <hr class="border-sky-300 my-4">
 
-        <!-- Add Reading Books Header & Counter -->
         <div class="flex items-center justify-between">
           <h4 class="font-extrabold text-slate-900 text-base uppercase">Add Reading Books (Max 20 Books)</h4>
           <span class="text-xs font-bold text-sky-900" id="bookCounter">Books Added: 1/20</span>
@@ -212,25 +210,25 @@
         </div>
       </div>
 
-      <!-- Admin Portal Login / Registration Form -->
+      <!-- Admin Portal Registration Form -->
       <div id="adminAuthBox" class="bg-sky-50 border border-sky-300 rounded-2xl p-6 mb-6 no-print">
-        <h4 class="font-extrabold text-sky-950 text-base mb-4"><i class="fa-solid fa-lock mr-2 text-sky-700"></i> Admin / Judge Portal Login</h4>
+        <h4 class="font-extrabold text-sky-950 text-base mb-4"><i class="fa-solid fa-user-shield mr-2 text-sky-700"></i> Admin Portal Registration Form</h4>
         
         <form id="adminLoginForm" onsubmit="handleAdminLogin(event)" class="space-y-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
             <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Username *</label>
-              <input type="text" id="adminUsername" required placeholder="Enter Admin Username" class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-white">
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Username * (Max 20 chars)</label>
+              <input type="text" id="adminUsername" required maxlength="20" placeholder="Enter Username (Max 20 chars)" class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-white">
             </div>
             <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Password (Alphanumeric, Min 8 Chars) *</label>
-              <input type="password" id="adminPassword" required minlength="8" placeholder="Enter Password" class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-white">
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Password * (Alphanumeric 8 Chars)</label>
+              <input type="password" id="adminPassword" required maxlength="8" placeholder="Exact 8 Alphanumeric Chars" class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-white">
             </div>
           </div>
 
           <div class="flex gap-3">
             <button type="submit" class="bg-sky-700 hover:bg-sky-800 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow transition">
-              Login
+              Submit
             </button>
             <button type="button" onclick="clearAdminLoginForm()" class="bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold text-xs px-5 py-2.5 rounded-lg shadow transition">
               Cancel
@@ -239,14 +237,16 @@
         </form>
       </div>
 
-      <!-- Admin Welcome Banner (Hidden by Default) -->
+      <!-- Admin Welcome Banner -->
       <div id="adminWelcomeBanner" class="hidden bg-emerald-100 border border-emerald-300 text-emerald-950 p-4 rounded-2xl mb-6 flex justify-between items-center">
-        <h4 class="text-base font-extrabold" id="adminWelcomeText">Welcome to Admin Username</h4>
+        <h4 class="text-xl font-extrabold" id="adminWelcomeText">Welcome Username!</h4>
         <button onclick="adminLogout()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-3 py-1.5 rounded-lg shadow">Logout</button>
       </div>
 
-      <!-- Admin Filters (Only Active when Logged In) -->
+      <!-- Admin Content (Visible upon Admin Registration/Login) -->
       <div id="adminContent" class="hidden">
+        <h4 class="text-lg font-bold text-slate-900 mb-4 uppercase tracking-wide"><i class="fa-solid fa-book-bookmark text-sky-700 mr-2"></i>Registered Books & Evaluation</h4>
+        
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 no-print">
           <div>
             <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Filter Dept-Wise</label>
@@ -277,7 +277,7 @@
           </div>
         </div>
 
-        <!-- Admin Registered Students Table -->
+        <!-- Admin Table -->
         <div class="overflow-x-auto border border-slate-200 rounded-xl">
           <table class="w-full text-left text-xs text-slate-700">
             <thead class="bg-sky-700 text-white font-bold uppercase text-[11px]">
@@ -287,7 +287,7 @@
                 <th class="p-3">Department & Branch</th>
                 <th class="p-3">Year</th>
                 <th class="p-3">Registration Timestamp</th>
-                <th class="p-3">Registered Books & Evaluation</th>
+                <th class="p-3">Registered Books & Evaluation (Marks: 3 Digits Max)</th>
               </tr>
             </thead>
             <tbody id="adminTableBody" class="divide-y divide-slate-200 bg-white">
@@ -323,11 +323,16 @@
       const uname = document.getElementById('adminUsername').value;
       const pwd = document.getElementById('adminPassword').value;
 
-      // Alphanumeric validation check (Minimum 8 chars)
-      const isAlphanumeric = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$/.test(pwd);
+      if(uname.length > 20) {
+        alert("Username length must not exceed 20 characters.");
+        return;
+      }
 
-      if(!isAlphanumeric) {
-        alert("Password must be alphanumeric (contain both letters and numbers) and be at least 8 characters long.");
+      // Alphanumeric exactly 8 characters validation
+      const isExact8Alphanumeric = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8}$/.test(pwd);
+
+      if(!isExact8Alphanumeric) {
+        alert("Password must be exactly 8 alphanumeric characters long (containing both letters and numbers).");
         return;
       }
 
@@ -343,7 +348,7 @@
     function showAdminDashboard(uname) {
       document.getElementById('adminAuthBox').classList.add('hidden');
       document.getElementById('adminWelcomeBanner').classList.remove('hidden');
-      document.getElementById('adminWelcomeText').innerText = `Welcome to Admin ${uname}`;
+      document.getElementById('adminWelcomeText').innerText = `Welcome ${uname}!`;
       document.getElementById('adminContent').classList.remove('hidden');
       renderAdminTable(students);
     }
@@ -495,7 +500,7 @@
         const actionBtnText = b.isSaved ? 'Update' : 'Save';
         const actionBtnColor = b.isSaved ? 'bg-amber-600 hover:bg-amber-700' : 'bg-sky-700 hover:bg-sky-800';
 
-        const judgeInfo = b.judgeName ? `<br><span class="text-[9px] text-slate-500 font-semibold">Judge: ${b.judgeName}</span>` : '';
+        const judgeInfo = b.judgeName ? `<br><span class="text-[9px] text-slate-500 font-semibold">Evaluator: ${b.judgeName}</span>` : '';
 
         row.innerHTML = `
           <td class="p-3 font-bold">${idx + 1}</td>
@@ -578,7 +583,7 @@
         let booksSubTable = `<div class="space-y-2 py-1">`;
         
         s.books.forEach((b, bIdx) => {
-          const evalBy = b.judgeName ? `<span class="text-[10px] text-slate-500 font-semibold"> (Evaluated by Judge: ${b.judgeName})</span>` : '';
+          const evalBy = b.judgeName ? `<span class="text-[10px] text-slate-500 font-semibold"> (Evaluated by Admin: ${b.judgeName})</span>` : '';
           
           booksSubTable += `
             <div class="bg-sky-50 border border-sky-200 p-2.5 rounded-lg text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -587,7 +592,7 @@
                 <p class="text-[11px] text-slate-500">Status: <strong>${b.status}</strong> | Completed: <strong>${b.completionDate || 'N/A'}</strong> ${evalBy}</p>
               </div>
               <div class="flex items-center gap-2">
-                <input type="number" placeholder="Mark" id="mark_${s.regNo}_${bIdx}" value="${b.presentationMark !== 'Pending' ? b.presentationMark : ''}" class="w-16 px-2 py-1 border rounded text-xs bg-white font-bold" min="0" max="100">
+                <input type="number" placeholder="0-999" id="mark_${s.regNo}_${bIdx}" value="${b.presentationMark !== 'Pending' ? b.presentationMark : ''}" class="w-20 px-2 py-1 border rounded text-xs bg-white font-bold" min="0" max="999" oninput="if(this.value.length>3) this.value=this.value.slice(0,3);">
                 <button onclick="assignBookMark('${s.regNo}', ${bIdx})" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-2.5 py-1 rounded text-xs shadow">Save Mark</button>
               </div>
             </div>
@@ -612,13 +617,13 @@
 
     function assignBookMark(regNo, bookIdx) {
       if(!activeAdminUser) {
-        alert("Please log in as an Admin/Judge first.");
+        alert("Please log in as an Admin first.");
         return;
       }
 
       const markVal = document.getElementById(`mark_${regNo}_${bookIdx}`).value;
-      if(!markVal) {
-        alert("Please enter a mark before saving.");
+      if(!markVal || markVal < 0 || markVal > 999) {
+        alert("Please enter a valid presentation mark (only up to 3 digits).");
         return;
       }
 
@@ -634,7 +639,7 @@
         }
         
         renderAdminTable(students);
-        alert(`Mark of ${markVal} assigned by Admin "${activeAdminUser}" for "${students[sIdx].books[bookIdx].name}".`);
+        alert(`Presentation Mark of ${markVal} assigned by Admin "${activeAdminUser}" for "${students[sIdx].books[bookIdx].name}".`);
       }
     }
 
@@ -652,7 +657,7 @@
     }
 
     function exportToCSV() {
-      let csv = "data:text/csv;charset=utf-8,Register No,Student Name,Department,Year,Registration Timestamp,Book Name,Author of Book,No of Pages,Status of Reading,Completion Date,Presentation Mark,Evaluated By Admin/Judge\n";
+      let csv = "data:text/csv;charset=utf-8,Register No,Student Name,Department,Year,Registration Timestamp,Book Name,Author of Book,No of Pages,Status of Reading,Completion Date,Presentation Mark,Evaluated By Admin\n";
       students.forEach(s => {
         s.books.forEach(b => {
           csv += `"${s.regNo}","${s.name}","${s.dept}","${s.year}","${s.dateTime}","${b.name}","${b.author}","${b.pages}","${b.status}","${b.completionDate}","${b.presentationMark}","${b.judgeName || 'N/A'}"\n`;
