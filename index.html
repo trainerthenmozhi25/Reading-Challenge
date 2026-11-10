@@ -226,4 +226,26 @@
   <!-- Footer -->
   <footer class="bg-sky-300 border-t border-sky-400 text-sky-950 py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
-      <p class="font-extrabold text-base text-slate-900">SRM
+      <p class="font-extrabold text-base text-slate-900">SRM Madurai College for Engineering and Technology</p>
+      <p class="text-sky-900 text-xs mt-1 font-semibold">Reading Challenge 2026</p>
+      <p class="text-sky-800 text-xs mt-6">&copy; 2026 SRM Madurai College. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function handleRegistration(event) {
+      event.preventDefault();
+      const name = document.getElementById('fullName').value;
+      const regNo = document.getElementById('regNo').value;
+      const dept = document.getElementById('department').value;
+      const track = document.getElementById('track').value;
+
+      document.getElementById('confirmText').innerText = 
+        `Welcome ${name} (${regNo} - ${dept})! You are successfully registered for the Reading Challenge 2026 (${track}) at SRM Madurai College for Engineering and Technology.`;
+
+      document.getElementById('regForm').reset();
+      document.getElementById('confirmBadge').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
