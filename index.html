@@ -25,7 +25,7 @@
         <img src="logo.png" alt="SRM Madurai College Header Banner" class="h-14 sm:h-20 object-contain w-auto" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x100?text=SRM+MADURAI+COLLEGE+FOR+ENGINEERING+AND+TECHNOLOGY';">
       </div>
 
-      <!-- Navigation Bar with Action Buttons -->
+      <!-- Navigation Bar -->
       <nav class="flex flex-wrap items-center justify-center gap-4 text-sm font-semibold text-sky-900 mt-1">
         <a href="#register" class="bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm px-5 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
           <i class="fa-solid fa-user-plus"></i> Registration
@@ -41,11 +41,8 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="relative bg-sky-100 py-10 border-b border-sky-200 no-print text-center">
+  <section class="relative bg-sky-100 py-8 border-b border-sky-200 no-print text-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="inline-flex items-center gap-2 bg-sky-200 border border-sky-300 text-sky-950 text-xl sm:text-3xl font-black px-8 py-3 rounded-full mb-4 shadow-sm">
-        <i class="fa-solid fa-award text-sky-700 text-3xl"></i> SRM Madurai Campus Annual Competition
-      </div>
       <h2 class="text-3xl sm:text-5xl font-black text-slate-900">
         Reading Challenge <span class="text-sky-700">2026</span>
       </h2>
@@ -56,12 +53,9 @@
   <section id="register" class="py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 no-print">
     <div class="bg-sky-200/90 border border-sky-300 rounded-3xl p-6 sm:p-10 shadow-md">
       
+      <!-- Simplified Header -->
       <div class="text-center mb-8">
-        <h3 class="text-3xl sm:text-4xl font-extrabold text-sky-950">Student Portal</h3>
-        <h4 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Registration Form</h4>
-        <p class="text-sky-900 font-bold text-xs sm:text-sm mt-2 uppercase tracking-wide">
-          SRM Madurai College for Engineering and Technology
-        </p>
+        <h3 class="text-3xl sm:text-4xl font-extrabold text-sky-950 uppercase tracking-wide">Registration form</h3>
       </div>
 
       <form id="regForm" onsubmit="handleRegistration(event)" class="space-y-6">
@@ -142,7 +136,6 @@
           <i class="fa-solid fa-plus mr-1"></i> Add Another Book
         </button>
 
-        <!-- Replaced label with "Submit" -->
         <button type="submit" class="w-full bg-sky-800 hover:bg-sky-900 text-white font-extrabold py-3.5 rounded-xl shadow-lg transition text-lg mt-4">
           Submit
         </button>
@@ -201,11 +194,10 @@
   <section id="admin" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div id="printableAdminSection" class="bg-white border border-sky-300 rounded-3xl p-6 sm:p-8 shadow-lg">
       
-      <!-- Admin Portal Header -->
+      <!-- Admin Header -->
       <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-200 pb-6 mb-6 gap-4">
         <div>
           <span class="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full uppercase">Faculty & Admin Panel</span>
-          <!-- Replaced text with "Registered Students List" -->
           <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Registered Students List</h3>
           <p class="text-slate-500 text-xs">SRM Madurai College for Engineering and Technology — Reading Challenge 2026</p>
         </div>
@@ -220,66 +212,89 @@
         </div>
       </div>
 
-      <!-- Admin / Judge Registration Block -->
-      <div id="judgeRegCard" class="bg-sky-50 border border-sky-300 rounded-2xl p-4 mb-6 no-print">
-        <h4 class="font-extrabold text-sky-950 text-sm mb-2"><i class="fa-solid fa-gavel mr-1.5 text-sky-700"></i> Judge / Admin Registration</h4>
-        <div class="flex flex-col sm:flex-row items-center gap-3">
-          <input type="text" id="judgeNameInput" placeholder="Enter Judge / Faculty Full Name..." class="w-full sm:w-80 px-3 py-2 border border-sky-300 rounded-lg text-xs bg-white">
-          <button onclick="registerJudge()" class="w-full sm:w-auto bg-sky-700 hover:bg-sky-800 text-white font-bold text-xs px-4 py-2 rounded-lg shadow">
-            Set Active Judge
-          </button>
-          <span id="activeJudgeDisplay" class="text-xs font-bold text-emerald-700 ml-2"></span>
-        </div>
+      <!-- Admin Portal Login / Registration Form -->
+      <div id="adminAuthBox" class="bg-sky-50 border border-sky-300 rounded-2xl p-6 mb-6 no-print">
+        <h4 class="font-extrabold text-sky-950 text-base mb-4"><i class="fa-solid fa-lock mr-2 text-sky-700"></i> Admin / Judge Portal Login</h4>
+        
+        <form id="adminLoginForm" onsubmit="handleAdminLogin(event)" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Username *</label>
+              <input type="text" id="adminUsername" required placeholder="Enter Admin Username" class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-white">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Password (Alphanumeric, Min 8 Chars) *</label>
+              <input type="password" id="adminPassword" required minlength="8" placeholder="Enter Password" class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-white">
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <button type="submit" class="bg-sky-700 hover:bg-sky-800 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow transition">
+              Login
+            </button>
+            <button type="button" onclick="clearAdminLoginForm()" class="bg-slate-300 hover:bg-slate-400 text-slate-800 font-bold text-xs px-5 py-2.5 rounded-lg shadow transition">
+              Cancel
+            </button>
+          </div>
+        </form>
       </div>
 
-      <!-- Admin Filters -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 no-print">
-        <div>
-          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Filter Dept-Wise</label>
-          <select id="deptFilter" onchange="filterAdminData()" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-slate-50">
-            <option value="ALL">All Departments</option>
-            <option value="B.E. CSE">B.E. CSE</option>
-            <option value="B.Tech IT">B.Tech IT</option>
-            <option value="B.Tech AI&DS">B.Tech AI&DS</option>
-            <option value="B.E. Cyber Security">B.E. Cyber Security</option>
-            <option value="B.E. AIML">B.E. AIML</option>
-            <option value="B.E. ECE">B.E. ECE</option>
-            <option value="B.E. EEE">B.E. EEE</option>
-            <option value="B.E. Mechanical">B.E. Mechanical</option>
-            <option value="B.E. Civil">B.E. Civil</option>
-          </select>
-        </div>
+      <!-- Admin Welcome Banner (Hidden by Default) -->
+      <div id="adminWelcomeBanner" class="hidden bg-emerald-100 border border-emerald-300 text-emerald-950 p-4 rounded-2xl mb-6 flex justify-between items-center">
+        <h4 class="text-base font-extrabold" id="adminWelcomeText">Welcome to Admin Username</h4>
+        <button onclick="adminLogout()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-3 py-1.5 rounded-lg shadow">Logout</button>
+      </div>
 
-        <div>
-          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Search Student</label>
-          <input type="text" id="searchInput" onkeyup="filterAdminData()" placeholder="Name or Reg No..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-slate-50">
-        </div>
+      <!-- Admin Filters (Only Active when Logged In) -->
+      <div id="adminContent" class="hidden">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 no-print">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Filter Dept-Wise</label>
+            <select id="deptFilter" onchange="filterAdminData()" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-slate-50">
+              <option value="ALL">All Departments</option>
+              <option value="B.E. CSE">B.E. CSE</option>
+              <option value="B.Tech IT">B.Tech IT</option>
+              <option value="B.Tech AI&DS">B.Tech AI&DS</option>
+              <option value="B.E. Cyber Security">B.E. Cyber Security</option>
+              <option value="B.E. AIML">B.E. AIML</option>
+              <option value="B.E. ECE">B.E. ECE</option>
+              <option value="B.E. EEE">B.E. EEE</option>
+              <option value="B.E. Mechanical">B.E. Mechanical</option>
+              <option value="B.E. Civil">B.E. Civil</option>
+            </select>
+          </div>
 
-        <div class="flex items-end">
-          <div class="bg-sky-50 border border-sky-200 rounded-lg p-2.5 w-full text-center">
-            <span class="text-xs text-sky-800 font-bold uppercase">Total Registered Students:</span>
-            <span id="adminStudentCount" class="text-lg font-extrabold text-sky-900 ml-2">0</span>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Search Student</label>
+            <input type="text" id="searchInput" onkeyup="filterAdminData()" placeholder="Name or Reg No..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-slate-50">
+          </div>
+
+          <div class="flex items-end">
+            <div class="bg-sky-50 border border-sky-200 rounded-lg p-2.5 w-full text-center">
+              <span class="text-xs text-sky-800 font-bold uppercase">Total Registered Students:</span>
+              <span id="adminStudentCount" class="text-lg font-extrabold text-sky-900 ml-2">0</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Admin Registered Students Table -->
-      <div class="overflow-x-auto border border-slate-200 rounded-xl">
-        <table class="w-full text-left text-xs text-slate-700">
-          <thead class="bg-sky-700 text-white font-bold uppercase text-[11px]">
-            <tr>
-              <th class="p-3">Reg No</th>
-              <th class="p-3">Student Name</th>
-              <th class="p-3">Department & Branch</th>
-              <th class="p-3">Year</th>
-              <th class="p-3">Registration Timestamp</th>
-              <th class="p-3">Registered Books & Evaluation</th>
-            </tr>
-          </thead>
-          <tbody id="adminTableBody" class="divide-y divide-slate-200 bg-white">
-            <!-- Dynamic Admin Rows -->
-          </tbody>
-        </table>
+        <!-- Admin Registered Students Table -->
+        <div class="overflow-x-auto border border-slate-200 rounded-xl">
+          <table class="w-full text-left text-xs text-slate-700">
+            <thead class="bg-sky-700 text-white font-bold uppercase text-[11px]">
+              <tr>
+                <th class="p-3">Reg No</th>
+                <th class="p-3">Student Name</th>
+                <th class="p-3">Department & Branch</th>
+                <th class="p-3">Year</th>
+                <th class="p-3">Registration Timestamp</th>
+                <th class="p-3">Registered Books & Evaluation</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableBody" class="divide-y divide-slate-200 bg-white">
+              <!-- Dynamic Admin Rows -->
+            </tbody>
+          </table>
+        </div>
       </div>
 
     </div>
@@ -296,23 +311,50 @@
 
   <script>
     let activeStudent = null;
-    let activeJudgeName = localStorage.getItem('srm_active_judge') || "";
+    let activeAdminUser = localStorage.getItem('srm_active_admin') || "";
     let students = JSON.parse(localStorage.getItem('srm_students_db')) || [];
 
-    if(activeJudgeName) {
-      document.getElementById('activeJudgeDisplay').innerText = `Active Judge: ${activeJudgeName}`;
+    if(activeAdminUser) {
+      showAdminDashboard(activeAdminUser);
     }
 
-    function registerJudge() {
-      const jName = document.getElementById('judgeNameInput').value;
-      if(!jName) {
-        alert("Please enter Judge Name.");
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const uname = document.getElementById('adminUsername').value;
+      const pwd = document.getElementById('adminPassword').value;
+
+      // Alphanumeric validation check (Minimum 8 chars)
+      const isAlphanumeric = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$/.test(pwd);
+
+      if(!isAlphanumeric) {
+        alert("Password must be alphanumeric (contain both letters and numbers) and be at least 8 characters long.");
         return;
       }
-      activeJudgeName = jName;
-      localStorage.setItem('srm_active_judge', jName);
-      document.getElementById('activeJudgeDisplay').innerText = `Active Judge: ${activeJudgeName}`;
-      alert(`Judge registered as "${activeJudgeName}". Evaluations will now include your judge name.`);
+
+      activeAdminUser = uname;
+      localStorage.setItem('srm_active_admin', uname);
+      showAdminDashboard(uname);
+    }
+
+    function clearAdminLoginForm() {
+      document.getElementById('adminLoginForm').reset();
+    }
+
+    function showAdminDashboard(uname) {
+      document.getElementById('adminAuthBox').classList.add('hidden');
+      document.getElementById('adminWelcomeBanner').classList.remove('hidden');
+      document.getElementById('adminWelcomeText').innerText = `Welcome to Admin ${uname}`;
+      document.getElementById('adminContent').classList.remove('hidden');
+      renderAdminTable(students);
+    }
+
+    function adminLogout() {
+      localStorage.removeItem('srm_active_admin');
+      activeAdminUser = "";
+      document.getElementById('adminAuthBox').classList.remove('hidden');
+      document.getElementById('adminWelcomeBanner').classList.add('hidden');
+      document.getElementById('adminContent').classList.add('hidden');
+      clearAdminLoginForm();
     }
 
     function addBookRow() {
@@ -392,7 +434,7 @@
           fileName: "",
           presentationMark: "Pending",
           judgeName: "",
-          saved: false
+          isSaved: false
         });
       });
 
@@ -436,13 +478,22 @@
         const row = document.createElement('tr');
         row.className = "hover:bg-sky-50 border-b border-slate-200";
 
-        const viewBtnHtml = b.fileUrl 
-          ? `<a href="${b.fileUrl}" target="_blank" class="ml-2 bg-sky-200 hover:bg-sky-300 text-sky-900 font-bold px-2 py-0.5 rounded text-[10px] inline-flex items-center gap-1"><i class="fa-solid fa-eye"></i> View</a>`
-          : `<span id="view_${idx}"></span>`;
+        const fileBadgeInsideText = b.fileName 
+          ? `<div class="mt-1.5 p-1.5 bg-sky-100 border border-sky-300 rounded text-[10px] font-bold text-sky-900 flex items-center justify-between">
+              <span><i class="fa-solid fa-file-arrow-up mr-1 text-sky-700"></i> ${b.fileName}</span>
+              <a href="${b.fileUrl}" target="_blank" class="text-sky-700 hover:underline">View</a>
+             </div>`
+          : '';
 
-        const saveBtnHtml = b.saved 
-          ? `<button disabled class="bg-gray-400 text-white font-bold px-3 py-1.5 rounded text-xs cursor-not-allowed flex items-center gap-1"><i class="fa-solid fa-check"></i> Saved</button>`
-          : `<button onclick="saveSingleBookProgress(${idx})" id="saveBtn_${idx}" class="bg-sky-700 hover:bg-sky-800 text-white font-bold px-3 py-1.5 rounded text-xs shadow">Save</button>`;
+        const fileButtonControls = `
+          <div class="flex items-center gap-1.5 mt-1">
+            <input type="file" accept="image/*,.pdf" onchange="handleFileUpload(${idx}, this)" class="text-[10px] text-slate-500 w-44">
+            ${b.fileUrl ? `<a href="${b.fileUrl}" target="_blank" class="bg-sky-600 hover:bg-sky-700 text-white font-bold px-2 py-1 rounded text-[10px] inline-flex items-center gap-1"><i class="fa-solid fa-eye"></i> View File</a>` : ''}
+          </div>
+        `;
+
+        const actionBtnText = b.isSaved ? 'Update' : 'Save';
+        const actionBtnColor = b.isSaved ? 'bg-amber-600 hover:bg-amber-700' : 'bg-sky-700 hover:bg-sky-800';
 
         const judgeInfo = b.judgeName ? `<br><span class="text-[9px] text-slate-500 font-semibold">Judge: ${b.judgeName}</span>` : '';
 
@@ -460,18 +511,18 @@
           <td class="p-3">
             <input type="date" value="${b.completionDate}" onchange="updateBookField(${idx}, 'completionDate', this.value)" class="px-2 py-1 border border-slate-300 rounded bg-white text-xs">
           </td>
-          <td class="p-3">
-            <textarea onchange="validateReviewWordCount(${idx}, this.value)" placeholder="Write review (250-300 words)..." class="w-full p-2 border border-slate-300 rounded text-xs bg-white mb-1.5" rows="2">${b.reviewText}</textarea>
-            <div class="flex items-center">
-              <input type="file" accept="image/*,.pdf" onchange="handleFileUpload(${idx}, this)" class="text-[10px] text-slate-500">
-              ${viewBtnHtml}
-            </div>
+          <td class="p-3 max-w-xs">
+            <textarea onchange="validateReviewWordCount(${idx}, this.value)" placeholder="Write review (250-300 words)..." class="w-full p-2 border border-slate-300 rounded text-xs bg-white" rows="2">${b.reviewText}</textarea>
+            ${fileBadgeInsideText}
+            ${fileButtonControls}
           </td>
           <td class="p-3 font-bold text-sky-800 text-center">
             ${b.presentationMark !== 'Pending' ? `<span class="bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full border border-emerald-300 font-bold">${b.presentationMark} Marks</span>${judgeInfo}` : `<span class="text-slate-400 font-medium">Pending</span>`}
           </td>
           <td class="p-3">
-            ${saveBtnHtml}
+            <button onclick="saveSingleBookProgress(${idx})" class="${actionBtnColor} text-white font-bold px-3 py-1.5 rounded text-xs shadow transition">
+              ${actionBtnText}
+            </button>
           </td>
         `;
         tbody.appendChild(row);
@@ -481,7 +532,7 @@
     function validateReviewWordCount(bookIdx, text) {
       const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
       if(text.length > 0 && (words < 250 || words > 300)) {
-        alert(`Notice: Review has ${words} words. The required length is between 250 and 300 words.`);
+        alert(`Notice: Review currently has ${words} words. Required length is 250-300 words.`);
       }
       activeStudent.books[bookIdx].reviewText = text;
     }
@@ -502,14 +553,14 @@
     }
 
     function saveSingleBookProgress(bookIdx) {
-      activeStudent.books[bookIdx].saved = true;
+      activeStudent.books[bookIdx].isSaved = true;
       const idx = students.findIndex(s => s.regNo === activeStudent.regNo);
       if(idx >= 0) {
         students[idx] = activeStudent;
         localStorage.setItem('srm_students_db', JSON.stringify(students));
         loadStudentPortal(activeStudent);
         renderAdminTable(students);
-        alert(`Progress saved for "${activeStudent.books[bookIdx].name}"!`);
+        alert(`Progress updated for "${activeStudent.books[bookIdx].name}"!`);
       }
     }
 
@@ -560,8 +611,8 @@
     }
 
     function assignBookMark(regNo, bookIdx) {
-      if(!activeJudgeName) {
-        alert("Please enter & register Judge Name in the Judge/Admin panel first.");
+      if(!activeAdminUser) {
+        alert("Please log in as an Admin/Judge first.");
         return;
       }
 
@@ -574,7 +625,7 @@
       const sIdx = students.findIndex(s => s.regNo === regNo);
       if(sIdx >= 0) {
         students[sIdx].books[bookIdx].presentationMark = markVal;
-        students[sIdx].books[bookIdx].judgeName = activeJudgeName;
+        students[sIdx].books[bookIdx].judgeName = activeAdminUser;
         localStorage.setItem('srm_students_db', JSON.stringify(students));
         
         if(activeStudent && activeStudent.regNo === regNo) {
@@ -583,7 +634,7 @@
         }
         
         renderAdminTable(students);
-        alert(`Mark of ${markVal} assigned by Judge "${activeJudgeName}" for "${students[sIdx].books[bookIdx].name}".`);
+        alert(`Mark of ${markVal} assigned by Admin "${activeAdminUser}" for "${students[sIdx].books[bookIdx].name}".`);
       }
     }
 
@@ -601,7 +652,7 @@
     }
 
     function exportToCSV() {
-      let csv = "data:text/csv;charset=utf-8,Register No,Student Name,Department,Year,Registration Timestamp,Book Name,Author of Book,No of Pages,Status of Reading,Completion Date,Presentation Mark,Evaluated By Judge\n";
+      let csv = "data:text/csv;charset=utf-8,Register No,Student Name,Department,Year,Registration Timestamp,Book Name,Author of Book,No of Pages,Status of Reading,Completion Date,Presentation Mark,Evaluated By Admin/Judge\n";
       students.forEach(s => {
         s.books.forEach(b => {
           csv += `"${s.regNo}","${s.name}","${s.dept}","${s.year}","${s.dateTime}","${b.name}","${b.author}","${b.pages}","${b.status}","${b.completionDate}","${b.presentationMark}","${b.judgeName || 'N/A'}"\n`;
@@ -615,8 +666,6 @@
       link.click();
       document.body.removeChild(link);
     }
-
-    renderAdminTable(students);
   </script>
 </body>
 </html>
