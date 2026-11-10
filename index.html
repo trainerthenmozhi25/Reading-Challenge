@@ -1,922 +1,286 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EngiRead - Engineering Reading Challenge</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0f7ff',
-                            100: '#e0effe',
-                            500: '#0284c7',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
-                            950: '#082f49',
-                        },
-                        accent: {
-                            cyan: '#06b6d4',
-                            emerald: '#10b981',
-                            amber: '#f59e0b',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineering Reading Challenge | SRM Madurai College for Engineering and Technology</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+              900: '#0c4a6e',
             }
+          }
         }
-    </script>
-    <!-- FontAwesome & Google Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass-card {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .glow-cyan {
-            box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.3);
-        }
-        .glow-emerald {
-            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.3);
-        }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #0284c7;
-        }
-    </style>
+      }
+    }
+  </script>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-950">
+<body class="bg-sky-100 text-slate-800 font-sans antialiased min-h-screen">
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('hero')">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-slate-950 text-xl font-bold shadow-lg shadow-cyan-500/20">
-                    <i class="fa-solid font-mono fa-book-bookmark"></i>
-                </div>
-                <div>
-                    <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">EngiRead</span>
-                    <span class="text-xs text-slate-400 block font-mono -mt-1">CHALLENGE 2026</span>
-                </div>
-            </div>
+  <!-- Header / Navbar -->
+  <header class="bg-sky-200/90 backdrop-blur-md border-b border-sky-300 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 bg-sky-700 rounded-xl flex items-center justify-center text-white shadow-md font-bold text-xl">
+          SRM
+        </div>
+        <div>
+          <h1 class="font-bold text-slate-900 leading-tight">SRM Madurai College</h1>
+          <p class="text-xs text-sky-800 font-semibold">for Engineering and Technology</p>
+        </div>
+      </div>
+      <nav class="hidden md:flex gap-6 text-sm font-semibold text-sky-900">
+        <a href="#about" class="hover:text-sky-600 transition">About</a>
+        <a href="#tracks" class="hover:text-sky-600 transition">Tracks</a>
+        <a href="#process" class="hover:text-sky-600 transition">Process</a>
+        <a href="#awards" class="hover:text-sky-600 transition">Awards</a>
+        <a href="#register" class="hover:text-sky-600 transition">Register</a>
+      </nav>
+      <a href="#register" class="bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition">
+        Register Now
+      </a>
+    </div>
+  </header>
 
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-                <a href="#overview" class="hover:text-cyan-400 transition-colors">Overview</a>
-                <a href="#tracks" class="hover:text-cyan-400 transition-colors">Tracks</a>
-                <a href="#timeline" class="hover:text-cyan-400 transition-colors">Process</a>
-                <a href="#awards" class="hover:text-cyan-400 transition-colors">Awards</a>
-                <a href="#walloffame" class="hover:text-cyan-400 transition-colors">Wall of Fame</a>
-                <a href="#dashboard" class="hover:text-cyan-400 transition-colors text-emerald-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> App Demo</a>
-            </nav>
+  <!-- Hero Section -->
+  <section class="relative bg-sky-100 py-16 md:py-20 border-b border-sky-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 bg-sky-200 border border-sky-300 text-sky-900 text-xs font-bold px-4 py-1.5 rounded-full mb-6">
+        <i class="fa-solid fa-graduation-cap"></i> SRM Madurai Campus Annual Competition
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight max-w-3xl mx-auto leading-tight">
+        Engineering Reading Challenge <span class="text-sky-700">2026</span>
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-slate-700 max-w-2xl mx-auto">
+        Empowering engineers at <strong>SRM Madurai College for Engineering and Technology</strong> to master technical literature, research publications, and innovations.
+      </p>
+      
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="#register" class="bg-sky-600 hover:bg-sky-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition">
+          Join the Challenge
+        </a>
+        <a href="#process" class="bg-sky-200 hover:bg-sky-300 text-sky-900 border border-sky-300 font-semibold px-6 py-3 rounded-xl shadow-sm transition">
+          View Process
+        </a>
+      </div>
 
-            <!-- Actions -->
-            <div class="flex items-center gap-3">
-                <a href="#register" class="px-4 py-2 rounded-lg text-sm font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 hover:brightness-110 transition-all shadow-md shadow-cyan-500/20">
-                    Register Now
-                </a>
-                <button id="mobileMenuBtn" class="md:hidden text-slate-300 hover:text-white p-2">
-                    <i class="fa-solid fa-bars text-xl"></i>
-                </button>
-            </div>
+      <!-- Quick Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-12">
+        <div class="bg-sky-200/80 border border-sky-300 p-4 rounded-xl shadow-sm">
+          <p class="text-2xl font-extrabold text-sky-800">₹25,000+</p>
+          <p class="text-xs text-slate-700 font-semibold mt-1">Prize Pool</p>
+        </div>
+        <div class="bg-sky-200/80 border border-sky-300 p-4 rounded-xl shadow-sm">
+          <p class="text-2xl font-extrabold text-sky-800">4 Tracks</p>
+          <p class="text-xs text-slate-700 font-semibold mt-1">Specialized Subjects</p>
+        </div>
+        <div class="bg-sky-200/80 border border-sky-300 p-4 rounded-xl shadow-sm">
+          <p class="text-2xl font-extrabold text-sky-800">30 Days</p>
+          <p class="text-xs text-slate-700 font-semibold mt-1">Guided Reading</p>
+        </div>
+        <div class="bg-sky-200/80 border border-sky-300 p-4 rounded-xl shadow-sm">
+          <p class="text-2xl font-extrabold text-sky-800">Certificate</p>
+          <p class="text-xs text-slate-700 font-semibold mt-1">All Participants</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tracks Section -->
+  <section id="tracks" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h3 class="text-2xl font-bold text-slate-900">Competition Reading Tracks</h3>
+      <p class="text-slate-700 text-sm mt-1">Select your engineering domain when registering</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-sky-200/70 border border-sky-300 rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+        <div class="w-12 h-12 bg-sky-600 rounded-xl flex items-center justify-center text-white text-xl font-bold mb-4">
+          <i class="fa-solid fa-code"></i>
+        </div>
+        <h4 class="font-bold text-slate-900">CSE & IT Track</h4>
+        <p class="text-xs text-slate-700 mt-2">AI research papers, system design architecture, cloud computing whitepapers.</p>
+      </div>
+
+      <div class="bg-sky-200/70 border border-sky-300 rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+        <div class="w-12 h-12 bg-sky-600 rounded-xl flex items-center justify-center text-white text-xl font-bold mb-4">
+          <i class="fa-solid fa-microchip"></i>
+        </div>
+        <h4 class="font-bold text-slate-900">ECE & EEE Track</h4>
+        <p class="text-xs text-slate-700 mt-2">Semiconductor technology, embedded systems, IoT innovations & smart grids.</p>
+      </div>
+
+      <div class="bg-sky-200/70 border border-sky-300 rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+        <div class="w-12 h-12 bg-sky-600 rounded-xl flex items-center justify-center text-white text-xl font-bold mb-4">
+          <i class="fa-solid fa-gear"></i>
+        </div>
+        <h4 class="font-bold text-slate-900">Mechanical & Automation</h4>
+        <p class="text-xs text-slate-700 mt-2">Robotics, materials engineering, thermodynamics, and manufacturing trends.</p>
+      </div>
+
+      <div class="bg-sky-200/70 border border-sky-300 rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+        <div class="w-12 h-12 bg-sky-600 rounded-xl flex items-center justify-center text-white text-xl font-bold mb-4">
+          <i class="fa-solid fa-building"></i>
+        </div>
+        <h4 class="font-bold text-slate-900">Civil & Infrastructure</h4>
+        <p class="text-xs text-slate-700 mt-2">Sustainable construction materials, structural engineering, smart cities.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competition Process -->
+  <section id="process" class="py-16 bg-sky-200/60 border-y border-sky-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h3 class="text-2xl font-bold text-slate-900">Challenge Process & Timeline</h3>
+        <p class="text-slate-700 text-sm mt-1">Four structured phases to completion</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="border-l-4 border-sky-600 pl-4 py-3 bg-sky-100 rounded-r-lg border border-sky-200 border-l-sky-600 shadow-sm">
+          <span class="text-xs font-bold text-sky-800 uppercase tracking-wider">Phase 1</span>
+          <h4 class="font-bold text-slate-900 text-base mt-1">Registration</h4>
+          <p class="text-xs text-slate-700 mt-1">Sign up with your SRM student ID and select your preferred engineering track.</p>
         </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-4 space-y-3">
-            <a href="#overview" class="block text-slate-300 hover:text-cyan-400 py-1">Overview</a>
-            <a href="#tracks" class="block text-slate-300 hover:text-cyan-400 py-1">Tracks</a>
-            <a href="#timeline" class="block text-slate-300 hover:text-cyan-400 py-1">Process & Timeline</a>
-            <a href="#awards" class="block text-slate-300 hover:text-cyan-400 py-1">Awards</a>
-            <a href="#walloffame" class="block text-slate-300 hover:text-cyan-400 py-1">Wall of Fame & Certificate</a>
-            <a href="#dashboard" class="block text-emerald-400 font-semibold py-1">Live Dashboard Demo</a>
+        <div class="border-l-4 border-sky-600 pl-4 py-3 bg-sky-100 rounded-r-lg border border-sky-200 border-l-sky-600 shadow-sm">
+          <span class="text-xs font-bold text-sky-800 uppercase tracking-wider">Phase 2</span>
+          <h4 class="font-bold text-slate-900 text-base mt-1">Daily Reading</h4>
+          <p class="text-xs text-slate-700 mt-1">Read assigned technical articles/chapters & submit brief 150-word summaries.</p>
         </div>
-    </header>
 
-    <main class="flex-grow">
-        <!-- Hero Section -->
-        <section id="hero" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 border-b border-slate-800/80">
-            <!-- Background Gradients -->
-            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-cyan-600/10 blur-[120px] rounded-full pointer-events-none"></div>
-            <div class="absolute top-1/3 right-10 w-[400px] h-[300px] bg-blue-600/10 blur-[100px] rounded-full pointer-events-none"></div>
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center max-w-3xl mx-auto">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-700/80 text-xs text-cyan-400 font-mono mb-6 shadow-inner">
-                        <i class="fa-solid fa-atom animate-spin"></i> National Engineering Literature Odyssey
-                    </div>
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6">
-                        Decode Research. <br>
-                        <span class="bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500 bg-clip-text text-transparent">Master Technical Depth.</span>
-                    </h1>
-                    <p class="text-slate-300 text-lg sm:text-xl leading-relaxed mb-8">
-                        Elevate your engineering acumen beyond standard textbooks. Analyze cutting-edge IEEE papers, classic engineering literature, and groundbreaking technological patents.
-                    </p>
-
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a href="#register" class="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-bold bg-gradient-to-r from-cyan-400 to-blue-600 text-slate-950 hover:opacity-95 transition-all shadow-lg shadow-cyan-500/25 flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-pen-nib"></i> Register for Challenge
-                        </a>
-                        <a href="#timeline" class="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-semibold bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-200 transition-all flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-compass"></i> Explore Timeline
-                        </a>
-                    </div>
-
-                    <!-- Highlights Stat Grid -->
-                    <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 pt-10 border-t border-slate-800/80">
-                        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/60">
-                            <div class="text-3xl font-extrabold text-cyan-400 font-mono">1,400+</div>
-                            <div class="text-xs text-slate-400 font-medium uppercase mt-1">Engineers Enrolled</div>
-                        </div>
-                        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/60">
-                            <div class="text-3xl font-extrabold text-emerald-400 font-mono">$10,000</div>
-                            <div class="text-xs text-slate-400 font-medium uppercase mt-1">Research Grants</div>
-                        </div>
-                        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/60">
-                            <div class="text-3xl font-extrabold text-amber-400 font-mono">4 Weeks</div>
-                            <div class="text-xs text-slate-400 font-medium uppercase mt-1">Intense Sprint</div>
-                        </div>
-                        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/60">
-                            <div class="text-3xl font-extrabold text-blue-400 font-mono">50+</div>
-                            <div class="text-xs text-slate-400 font-medium uppercase mt-1">Partner Institutions</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tracks Section -->
-        <section id="tracks" class="py-16 bg-slate-900/40 border-b border-slate-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <h2 class="text-3xl font-bold text-white">Specialized Reading Tracks</h2>
-                    <p class="text-slate-400 mt-2">Choose the domain that matches your engineering discipline and intellectual curiosity.</p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Track 1 -->
-                    <div class="glass-card p-6 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 group flex flex-col justify-between">
-                        <div>
-                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-microchip"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-2">Track A: AI & Deep Tech Papers</h3>
-                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                                Deep dive into groundbreaking research papers (ArXiv, IEEE, ACM) on Transformer architectures, Quantum Computing, and Autonomous Robotics.
-                            </p>
-                            <ul class="space-y-2 text-xs text-slate-300 font-mono mb-6">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Attention Is All You Need</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Modern Neural Network Papers</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Hardware Acceleration Specs</li>
-                            </ul>
-                        </div>
-                        <a href="#register" onclick="selectTrackOption('ai-track')" class="w-full py-2.5 rounded-lg border border-cyan-500/30 text-cyan-400 text-center font-medium text-sm hover:bg-cyan-500/10 transition-colors block">Select Track A</a>
-                    </div>
-
-                    <!-- Track 2 -->
-                    <div class="glass-card p-6 rounded-2xl hover:border-emerald-500/50 transition-all duration-300 group flex flex-col justify-between">
-                        <div>
-                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-gears"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-2">Track B: Classic Engineering Lore</h3>
-                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                                Unpack foundational engineering masterpieces across Mechanical Systems, Structural Mechanics, Thermodynamics, and Circuit Philosophy.
-                            </p>
-                            <ul class="space-y-2 text-xs text-slate-300 font-mono mb-6">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> The Design of Everyday Things</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Feynman Lectures on Physics</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Skunk Works Engineering</li>
-                            </ul>
-                        </div>
-                        <a href="#register" onclick="selectTrackOption('classic-track')" class="w-full py-2.5 rounded-lg border border-emerald-500/30 text-emerald-400 text-center font-medium text-sm hover:bg-emerald-500/10 transition-colors block">Select Track B</a>
-                    </div>
-
-                    <!-- Track 3 -->
-                    <div class="glass-card p-6 rounded-2xl hover:border-purple-500/50 transition-all duration-300 group flex flex-col justify-between">
-                        <div>
-                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-lightbulb"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-2">Track C: Tech Patents & Specs</h3>
-                            <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                                Learn to read technical standards, RFCs, and high-impact industrial patents to analyze how modern industrial software and hardware systems are structured.
-                            </p>
-                            <ul class="space-y-2 text-xs text-slate-300 font-mono mb-6">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Key Tech Breakthrough Patents</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Internet Protocol RFC Standards</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-400"></i> Clean Energy Storage Specs</li>
-                            </ul>
-                        </div>
-                        <a href="#register" onclick="selectTrackOption('patent-track')" class="w-full py-2.5 rounded-lg border border-purple-500/30 text-purple-400 text-center font-medium text-sm hover:bg-purple-500/10 transition-colors block">Select Track C</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Registration Section -->
-        <section id="register" class="py-20 relative">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="glass-card p-8 sm:p-12 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden">
-                    <div class="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                    <div class="text-center mb-8">
-                        <span class="text-cyan-400 font-mono text-xs uppercase tracking-widest">Join the Odyssey</span>
-                        <h2 class="text-3xl font-extrabold text-white mt-1">Student Registration Form</h2>
-                        <p class="text-slate-400 text-sm mt-1">Register now to secure your spot, receive your reading portfolio, and get mentor assignments.</p>
-                    </div>
-
-                    <!-- Interactive Form -->
-                    <form id="registrationForm" onsubmit="handleRegistration(event)" class="space-y-6">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <!-- Full Name -->
-                            <div>
-                                <label for="fullName" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Full Name *</label>
-                                <div class="relative">
-                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
-                                        <i class="fa-solid fa-user text-sm"></i>
-                                    </span>
-                                    <input type="text" id="fullName" required placeholder="e.g. Alex Turing"
-                                        class="w-full bg-slate-900 border border-slate-700/80 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
-                                </div>
-                            </div>
-
-                            <!-- Student Email -->
-                            <div>
-                                <label for="email" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">College Email Address *</label>
-                                <div class="relative">
-                                    <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
-                                        <i class="fa-solid fa-envelope text-sm"></i>
-                                    </span>
-                                    <input type="email" id="email" required placeholder="alex@university.edu"
-                                        class="w-full bg-slate-900 border border-slate-700/80 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                            <!-- Engineering Branch -->
-                            <div>
-                                <label for="branch" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Engineering Branch *</label>
-                                <select id="branch" required class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3.5 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
-                                    <option value="" disabled selected>Select Branch</option>
-                                    <option value="Computer Science / AI">Computer Science / AI</option>
-                                    <option value="Electrical & Electronics (EEE/ECE)">Electrical & Electronics (EEE/ECE)</option>
-                                    <option value="Mechanical Engineering">Mechanical Engineering</option>
-                                    <option value="Civil & Environmental">Civil & Environmental</option>
-                                    <option value="Chemical & Bio-Tech">Chemical & Bio-Tech</option>
-                                    <option value="Aerospace & Robotics">Aerospace & Robotics</option>
-                                    <option value="Other Engineering Track">Other Engineering Track</option>
-                                </select>
-                            </div>
-
-                            <!-- Year of Study -->
-                            <div>
-                                <label for="yearOfStudy" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Year of Study *</label>
-                                <select id="yearOfStudy" required class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3.5 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
-                                    <option value="" disabled selected>Select Year</option>
-                                    <option value="1st Year (Freshman)">1st Year (Freshman)</option>
-                                    <option value="2nd Year (Sophomore)">2nd Year (Sophomore)</option>
-                                    <option value="3rd Year (Junior)">3rd Year (Junior)</option>
-                                    <option value="4th Year (Senior)">4th Year (Senior)</option>
-                                    <option value="Postgraduate / Masters">Postgraduate / Masters</option>
-                                </select>
-                            </div>
-
-                            <!-- Track Selection -->
-                            <div>
-                                <label for="trackChoice" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Reading Track *</label>
-                                <select id="trackChoice" required class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3.5 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
-                                    <option value="" disabled selected>Select Track</option>
-                                    <option value="ai-track">Track A: AI & Deep Tech Papers</option>
-                                    <option value="classic-track">Track B: Classic Engineering Lore</option>
-                                    <option value="patent-track">Track C: Patents & Specifications</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- College / University Name -->
-                        <div>
-                            <label for="collegeName" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">College / University Name *</label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-500">
-                                    <i class="fa-solid fa-building-columns text-sm"></i>
-                                </span>
-                                <input type="text" id="collegeName" required placeholder="e.g. MIT, IIT, Stanford, National Tech Institute..."
-                                    class="w-full bg-slate-900 border border-slate-700/80 rounded-xl pl-10 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
-                            </div>
-                        </div>
-
-                        <!-- Motivation Textarea -->
-                        <div>
-                            <label for="motivation" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Reading Objective (Optional)</label>
-                            <textarea id="motivation" rows="2" placeholder="What technical paper or engineering book do you plan to analyze first?"
-                                class="w-full bg-slate-900 border border-slate-700/80 rounded-xl p-3.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"></textarea>
-                        </div>
-
-                        <!-- Terms Checkbox -->
-                        <div class="flex items-start gap-3">
-                            <input type="checkbox" id="terms" required class="mt-1 rounded bg-slate-900 border-slate-700 text-cyan-500 focus:ring-cyan-500">
-                            <label for="terms" class="text-xs text-slate-400 leading-normal">
-                                I commit to participating in weekly paper evaluations, adhering to academic integrity standards, and contributing constructive peer reviews.
-                            </label>
-                        </div>
-
-                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 text-slate-950 font-bold text-base hover:brightness-110 transition-all shadow-xl shadow-cyan-500/20 flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-paper-plane"></i> Submit Registration & Enter Challenge
-                        </button>
-                    </form>
-
-                    <!-- Registration Success Confirmation Modal / Card Overlay -->
-                    <div id="registrationSuccessCard" class="hidden text-center py-8">
-                        <div class="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Registration Confirmed!</h3>
-                        <p class="text-slate-300 text-sm max-w-md mx-auto mb-6">
-                            Welcome aboard, <span id="confName" class="text-cyan-400 font-semibold">Student</span>! Your reader pass code is <span id="confId" class="font-mono text-emerald-400 font-bold">#ENG-9982</span>. Check your email for track literature details.
-                        </p>
-                        <div class="bg-slate-900 p-4 rounded-xl max-w-md mx-auto text-left text-xs font-mono space-y-2 mb-6 border border-slate-800">
-                            <div class="flex justify-between border-b border-slate-800 pb-1">
-                                <span class="text-slate-400">Track:</span>
-                                <span id="confTrack" class="text-white">AI Papers</span>
-                            </div>
-                            <div class="flex justify-between border-b border-slate-800 pb-1">
-                                <span class="text-slate-400">Branch:</span>
-                                <span id="confBranch" class="text-white">Computer Science</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-slate-400">Institution:</span>
-                                <span id="confCollege" class="text-white">Tech Institute</span>
-                            </div>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                            <a href="#dashboard" onclick="closeSuccessCard()" class="px-6 py-2.5 rounded-lg bg-emerald-500 text-slate-950 font-semibold text-sm hover:bg-emerald-400 transition-colors">
-                                View Interactive Dashboard
-                            </a>
-                            <button onclick="resetRegistrationForm()" class="px-6 py-2.5 rounded-lg bg-slate-800 text-slate-300 font-semibold text-sm hover:bg-slate-700 transition-colors">
-                                Register Another Participant
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Process & Interactive Timeline -->
-        <section id="timeline" class="py-20 bg-slate-900/50 border-t border-b border-slate-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <span class="text-cyan-400 font-mono text-xs uppercase tracking-widest">Roadmap to Mastery</span>
-                    <h2 class="text-3xl font-extrabold text-white mt-1">4-Step Challenge Process</h2>
-                    <p class="text-slate-400 text-sm mt-2">Click on each step below to inspect key deliverables, assessment criteria, and milestones.</p>
-                </div>
-
-                <!-- Timeline Step Tabs -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                    <button onclick="switchStep(1)" id="stepBtn1" class="step-btn active p-4 rounded-2xl border text-left transition-all bg-slate-800 border-cyan-500 shadow-md">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300">PHASE 1</span>
-                            <i class="fa-solid fa-clipboard-check text-cyan-400"></i>
-                        </div>
-                        <h4 class="font-bold text-white text-sm sm:text-base">Track Setup</h4>
-                        <p class="text-slate-400 text-xs mt-1">Week 1</p>
-                    </button>
-
-                    <button onclick="switchStep(2)" id="stepBtn2" class="step-btn p-4 rounded-2xl border border-slate-800 bg-slate-900/60 hover:border-slate-700 text-left transition-all">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-400">PHASE 2</span>
-                            <i class="fa-solid fa-book-open-reader text-slate-400"></i>
-                        </div>
-                        <h4 class="font-bold text-white text-sm sm:text-base">Weekly Summaries</h4>
-                        <p class="text-slate-400 text-xs mt-1">Weeks 2 & 3</p>
-                    </button>
-
-                    <button onclick="switchStep(3)" id="stepBtn3" class="step-btn p-4 rounded-2xl border border-slate-800 bg-slate-900/60 hover:border-slate-700 text-left transition-all">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-400">PHASE 3</span>
-                            <i class="fa-solid fa-file-code text-slate-400"></i>
-                        </div>
-                        <h4 class="font-bold text-white text-sm sm:text-base">Technical Synthesis</h4>
-                        <p class="text-slate-400 text-xs mt-1">Week 4</p>
-                    </button>
-
-                    <button onclick="switchStep(4)" id="stepBtn4" class="step-btn p-4 rounded-2xl border border-slate-800 bg-slate-900/60 hover:border-slate-700 text-left transition-all">
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-400">PHASE 4</span>
-                            <i class="fa-solid fa-award text-slate-400"></i>
-                        </div>
-                        <h4 class="font-bold text-white text-sm sm:text-base">Peer Review & Defense</h4>
-                        <p class="text-slate-400 text-xs mt-1">Grand Final</p>
-                    </button>
-                </div>
-
-                <!-- Step Content Card Display -->
-                <div id="stepContentCard" class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800">
-                    <!-- Dynamic details injected by JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Awards & Prizes -->
-        <section id="awards" class="py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <span class="text-amber-400 font-mono text-xs uppercase tracking-widest">Recognition & Incentives</span>
-                    <h2 class="text-3xl font-extrabold text-white mt-1">Awards & Recognition Categories</h2>
-                    <p class="text-slate-400 text-sm mt-2">Earn prestigious grants, publication stipends, certificate credentials, and industry mentorship.</p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Award 1 -->
-                    <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-amber-500/50 transition-all flex flex-col justify-between relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-bl-full pointer-events-none"></div>
-                        <div>
-                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-4">
-                                <i class="fa-solid fa-trophy"></i>
-                            </div>
-                            <span class="text-xs font-mono text-amber-400 font-semibold uppercase">Grand Winner</span>
-                            <h3 class="text-xl font-bold text-white mt-1 mb-2">Top Technical Scholar</h3>
-                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                                Awarded to the student demonstrating exceptional depth in paper analysis, methodology critique, and synthesis accuracy.
-                            </p>
-                        </div>
-                        <div class="border-t border-slate-800/80 pt-4 space-y-2 text-xs text-slate-300">
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-gift text-amber-400"></i> $1,500 Cash Grant & Trophy</div>
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-newspaper text-amber-400"></i> 1-Year IEEE/ACM Digital Library Membership</div>
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-user-tie text-amber-400"></i> 1-on-1 Mentorship with Senior Researchers</div>
-                        </div>
-                    </div>
-
-                    <!-- Award 2 -->
-                    <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-cyan-500/50 transition-all flex flex-col justify-between relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-24 h-24 bg-cyan-500/10 rounded-bl-full pointer-events-none"></div>
-                        <div>
-                            <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl mb-4">
-                                <i class="fa-solid fa-brain"></i>
-                            </div>
-                            <span class="text-xs font-mono text-cyan-400 font-semibold uppercase">Runner Up</span>
-                            <h3 class="text-xl font-bold text-white mt-1 mb-2">Best Critical Analysis Award</h3>
-                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                                Honoring the most insightful critique of existing literature, identifying hidden flaws or proposing technical enhancements.
-                            </p>
-                        </div>
-                        <div class="border-t border-slate-800/80 pt-4 space-y-2 text-xs text-slate-300">
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-gift text-cyan-400"></i> $800 Educational Voucher</div>
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-book-journal-whills text-cyan-400"></i> O'Reilly Learning Subscription</div>
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-medal text-cyan-400"></i> Silver Certificate of Excellence</div>
-                        </div>
-                    </div>
-
-                    <!-- Award 3 -->
-                    <div class="glass-card rounded-2xl p-6 border border-slate-800 hover:border-emerald-500/50 transition-all flex flex-col justify-between relative overflow-hidden group">
-                        <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-500/10 rounded-bl-full pointer-events-none"></div>
-                        <div>
-                            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-4">
-                                <i class="fa-solid fa-lightbulb"></i>
-                            </div>
-                            <span class="text-xs font-mono text-emerald-400 font-semibold uppercase">Innovation Category</span>
-                            <h3 class="text-xl font-bold text-white mt-1 mb-2">Innovator’s Reader Badge</h3>
-                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                                Given for creative application of concepts learned during reading into practical open-source code repositories or specs.
-                            </p>
-                        </div>
-                        <div class="border-t border-slate-800/80 pt-4 space-y-2 text-xs text-slate-300">
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-gift text-emerald-400"></i> $500 Tech Hardware Voucher</div>
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-code-branch text-emerald-400"></i> GitHub Pro & Copilot Annual Access</div>
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-certificate text-emerald-400"></i> Innovation Digital Badge</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Wall of Fame & Interactive Certificate Preview -->
-        <section id="walloffame" class="py-20 bg-slate-900/40 border-t border-slate-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <span class="text-cyan-400 font-mono text-xs uppercase tracking-widest">Community Spotlight</span>
-                    <h2 class="text-3xl font-extrabold text-white mt-1">Appreciations & Wall of Fame</h2>
-                    <p class="text-slate-400 text-sm mt-2">Hear from past student champions and preview your custom Certificate of Completion.</p>
-                </div>
-
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <!-- Testimonials / Wall of Fame Cards -->
-                    <div class="space-y-6">
-                        <div class="glass-card p-6 rounded-2xl border border-slate-800 flex gap-4">
-                            <div class="w-12 h-12 rounded-full bg-cyan-500/20 border border-cyan-400 flex-shrink-0 flex items-center justify-center font-bold text-cyan-400 text-lg">
-                                SG
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-2">
-                                    <h4 class="font-bold text-white text-base">Sophia Chen</h4>
-                                    <span class="text-xs px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 font-mono">MIT '25 (ECE)</span>
-                                </div>
-                                <p class="text-slate-300 text-sm mt-2 italic">
-                                    "EngiRead fundamentally changed how I approach research literature. Learning to digest complex IEEE papers gave me a huge edge in my senior thesis project!"
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="glass-card p-6 rounded-2xl border border-slate-800 flex gap-4">
-                            <div class="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-400 flex-shrink-0 flex items-center justify-center font-bold text-emerald-400 text-lg">
-                                AR
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-2">
-                                    <h4 class="font-bold text-white text-base">Aarav Rao</h4>
-                                    <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-mono">IIT Bombay '26 (Mech)</span>
-                                </div>
-                                <p class="text-slate-300 text-sm mt-2 italic">
-                                    "The weekly summary submission process kept me disciplined. The peer review feedback from engineers worldwide was invaluable!"
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Interactive Certificate Preview Generator -->
-                    <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-800">
-                        <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-award text-amber-400"></i> Certificate Generator Preview
-                        </h3>
-                        <p class="text-xs text-slate-400 mb-6">Type your name below to generate a live preview of your official completion certificate.</p>
-
-                        <div class="mb-6">
-                            <label class="block text-xs font-mono uppercase text-slate-400 mb-2">Preview Student Name</label>
-                            <input type="text" id="certNameInput" oninput="updateCertificatePreview()" value="Jordan Miller" 
-                                class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-500">
-                        </div>
-
-                        <!-- Certificate Canvas Graphic Preview -->
-                        <div class="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border-2 border-amber-500/30 text-center relative overflow-hidden shadow-inner">
-                            <div class="absolute -top-10 -right-10 w-28 h-28 bg-amber-500/10 rounded-full blur-2xl"></div>
-                            
-                            <div class="text-[10px] font-mono tracking-widest text-amber-400 uppercase mb-2">Official Certificate of Accomplishment</div>
-                            <h4 class="text-xs text-slate-400">Engineering Literature Reading Challenge 2026</h4>
-                            
-                            <div class="my-4 py-2 border-y border-slate-800">
-                                <span class="text-xs text-slate-400 block">PROUDLY PRESENTED TO</span>
-                                <span id="certPreviewName" class="text-xl font-extrabold text-cyan-300 font-serif">Jordan Miller</span>
-                            </div>
-
-                            <p class="text-[11px] text-slate-400 leading-normal max-w-xs mx-auto">
-                                For successfully analyzing, summarizing, and presenting advanced technical literature across the 4-week engineering reading challenge.
-                            </p>
-
-                            <div class="mt-6 flex justify-between items-end text-[9px] font-mono text-slate-500 border-t border-slate-800/80 pt-3">
-                                <div>
-                                    <span class="block text-slate-400">VERIFIED ID</span>
-                                    <span>ENG-READ-2026-9041</span>
-                                </div>
-                                <div class="text-amber-400 font-bold flex items-center gap-1 text-xs">
-                                    <i class="fa-solid fa-certificate"></i> EngiRead Verified
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Interactive Dashboard / Leaderboard Prototype -->
-        <section id="dashboard" class="py-20 border-t border-slate-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="text-emerald-400 font-mono text-xs uppercase tracking-widest">Live Prototype</span>
-                    <h2 class="text-3xl font-extrabold text-white mt-1">Student Dashboard & Leaderboard</h2>
-                    <p class="text-slate-400 text-sm mt-2">Test out how participants submit reading logs, track progress, and view live leaderboard ranks.</p>
-                </div>
-
-                <div class="grid lg:grid-cols-3 gap-8">
-                    <!-- Progress & Summary Submission Tool -->
-                    <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-6">
-                        <h3 class="text-lg font-bold text-white flex items-center justify-between">
-                            <span>Submit Weekly Log</span>
-                            <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">Active Sprint</span>
-                        </h3>
-
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-400 mb-1">Paper / Chapter Title</label>
-                            <input type="text" id="logTitle" placeholder="e.g. Analysis of ResNet Architectures" class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-400 mb-1">Key Takeaway / Technical Summary</label>
-                            <textarea id="logSummary" rows="3" placeholder="Summarize methodology, key equations, or hardware trade-offs..." class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-emerald-500"></textarea>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-400 mb-1">Pages / Sections Completed</label>
-                            <input type="number" id="logPages" placeholder="e.g. 24" class="w-full bg-slate-900 border border-slate-700/80 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-emerald-500">
-                        </div>
-
-                        <button onclick="submitReadingLog()" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition-colors flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-plus-circle"></i> Log Progress (+150 pts)
-                        </button>
-                    </div>
-
-                    <!-- Live Leaderboard Simulation -->
-                    <div class="lg:col-span-2 glass-card p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
-                        <div>
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-                                <div>
-                                    <h3 class="text-lg font-bold text-white">Global Reader Standings</h3>
-                                    <p class="text-xs text-slate-400">Points calculated by papers summarized, peer score, and consistency.</p>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <button onclick="filterLeaderboard('all')" class="lb-filter active text-xs px-3 py-1.5 rounded-lg bg-slate-800 text-white hover:bg-slate-700">All Tracks</button>
-                                    <button onclick="filterLeaderboard('ai')" class="lb-filter text-xs px-3 py-1.5 rounded-lg bg-slate-900 text-slate-400 hover:bg-slate-800">Track A</button>
-                                    <button onclick="filterLeaderboard('mech')" class="lb-filter text-xs px-3 py-1.5 rounded-lg bg-slate-900 text-slate-400 hover:bg-slate-800">Track B</button>
-                                </div>
-                            </div>
-
-                            <!-- Leaderboard Table -->
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left text-sm">
-                                    <thead class="text-xs uppercase font-mono text-slate-400 border-b border-slate-800">
-                                        <tr>
-                                            <th class="pb-3 px-2">Rank</th>
-                                            <th class="pb-3">Participant</th>
-                                            <th class="pb-3">Branch & University</th>
-                                            <th class="pb-3 text-right">Summaries</th>
-                                            <th class="pb-3 text-right">Points</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="leaderboardBody" class="divide-y divide-slate-800/60 font-mono text-xs">
-                                        <!-- Dynamically generated rows -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="mt-4 pt-4 border-t border-slate-800 text-xs text-slate-500 flex justify-between items-center">
-                            <span>Showing top active engineering scholars</span>
-                            <span class="text-cyan-400 font-semibold cursor-pointer hover:underline" onclick="alert('Demo: Complete weekly logs to increase real-time ranking!')">How points are awarded?</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-800 py-12 text-slate-400 text-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div class="md:col-span-2">
-                <div class="flex items-center gap-2 mb-3">
-                    <div class="w-7 h-7 rounded-lg bg-cyan-500 flex items-center justify-center text-slate-950 font-bold text-xs">
-                        <i class="fa-solid fa-book-bookmark"></i>
-                    </div>
-                    <span class="font-bold text-white text-base">EngiRead Challenge</span>
-                </div>
-                <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
-                    Empowering engineering students globally to cultivate analytical rigor through deep reading of research papers, classical texts, and patent documentation.
-                </p>
-            </div>
-            <div>
-                <h5 class="text-white font-semibold text-xs uppercase tracking-wider mb-3">Quick Navigation</h5>
-                <ul class="space-y-2 text-xs">
-                    <li><a href="#overview" class="hover:text-cyan-400">Overview</a></li>
-                    <li><a href="#tracks" class="hover:text-cyan-400">Tracks</a></li>
-                    <li><a href="#register" class="hover:text-cyan-400">Registration</a></li>
-                    <li><a href="#timeline" class="hover:text-cyan-400">Timeline & Guidelines</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="text-white font-semibold text-xs uppercase tracking-wider mb-3">Support & Conduct</h5>
-                <ul class="space-y-2 text-xs">
-                    <li><a href="#" class="hover:text-cyan-400">Academic Integrity Policy</a></li>
-                    <li><a href="#" class="hover:text-cyan-400">FAQ & Reading Lists</a></li>
-                    <li><a href="#" class="hover:text-cyan-400">Partner Universities</a></li>
-                    <li><a href="#" class="hover:text-cyan-400">Contact Mentors</a></li>
-                </ul>
-            </div>
+        <div class="border-l-4 border-sky-600 pl-4 py-3 bg-sky-100 rounded-r-lg border border-sky-200 border-l-sky-600 shadow-sm">
+          <span class="text-xs font-bold text-sky-800 uppercase tracking-wider">Phase 3</span>
+          <h4 class="font-bold text-slate-900 text-base mt-1">Review & Quiz</h4>
+          <p class="text-xs text-slate-700 mt-1">Participate in weekly online comprehension quizzes to test technical insights.</p>
         </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-900 pt-6 text-center text-xs text-slate-600">
-            &copy; 2026 EngiRead Engineering Challenge. All rights reserved. Designed for student engineers worldwide.
+
+        <div class="border-l-4 border-sky-600 pl-4 py-3 bg-sky-100 rounded-r-lg border border-sky-200 border-l-sky-600 shadow-sm">
+          <span class="text-xs font-bold text-sky-800 uppercase tracking-wider">Phase 4</span>
+          <h4 class="font-bold text-slate-900 text-base mt-1">Grand Finale</h4>
+          <p class="text-xs text-slate-700 mt-1">Presentation of top technical reviews & felicitation award ceremony.</p>
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <!-- JavaScript Logic -->
-    <script>
-        // Mobile Navigation Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+  <!-- Registration Form Section -->
+  <section id="register" class="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-sky-200/90 border border-sky-300 rounded-3xl p-6 sm:p-10 shadow-md">
+      <div class="text-center mb-8">
+        <h3 class="text-2xl font-bold text-slate-900">Student Registration Form</h3>
+        <p class="text-sky-900 text-sm font-semibold mt-1">SRM Madurai College for Engineering and Technology</p>
+      </div>
 
-        // Timeline Step Content Data
-        const timelineSteps = {
-            1: {
-                title: "Step 1: Registration & Track Selection",
-                timeframe: "Week 1 (Onboarding)",
-                details: "Participants select their reading track (AI Papers, Engineering Lore, or Patents). You will receive your curated digital reading index and gain access to the EngiRead Discord & Leaderboard portal.",
-                deliverable: "Track confirmation & initial reading plan submission.",
-                badge: "Registered Scholar"
-            },
-            2: {
-                title: "Step 2: Book/Paper Reading & Weekly Summaries",
-                timeframe: "Weeks 2 & 3 (Deep Dive)",
-                details: "Read assigned or self-selected literature. Submit 2 technical summaries per week (approx 500 words each) breaking down core hypotheses, math proofs, architecture diagrams, or experimental results.",
-                deliverable: "4 total technical summary submissions.",
-                badge: "Active Summarizer"
-            },
-            3: {
-                title: "Step 3: Synthesis & Technical Presentation",
-                timeframe: "Week 4 (Synthesis Phase)",
-                details: "Synthesize key insights into a 3-page whitepaper or a 5-minute video presentation. Explain how the concepts can be applied to solve modern real-world engineering problems.",
-                deliverable: "Final Technical Synthesis Whitepaper or Video link.",
-                badge: "Tech Strategist"
-            },
-            4: {
-                title: "Step 4: Peer Review & Grand Evaluation",
-                timeframe: "Final Evaluation Round",
-                details: "Participate in double-blind peer review of 3 fellow submissions. Finalists present live before a panel of academic mentors and industry engineers for cash grants & top honors.",
-                deliverable: "Peer review feedback scores + Panel Q&A.",
-                badge: "Challenge Graduate"
-            }
-        };
+      <form id="regForm" onsubmit="handleRegistration(event)" class="space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-xs font-bold text-slate-800 uppercase mb-2">Full Name *</label>
+            <input type="text" id="fullName" required placeholder="e.g. Ramesh Kumar" class="w-full px-4 py-3 rounded-xl border border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-600 bg-sky-50 text-slate-900 text-sm">
+          </div>
 
-        function switchStep(stepNum) {
-            // Update step buttons UI
-            for(let i = 1; i <= 4; i++) {
-                const btn = document.getElementById(`stepBtn${i}`);
-                if (i === stepNum) {
-                    btn.className = "step-btn active p-4 rounded-2xl border text-left transition-all bg-slate-800 border-cyan-500 shadow-md";
-                    btn.querySelector('span').className = "text-xs font-mono font-bold px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300";
-                } else {
-                    btn.className = "step-btn p-4 rounded-2xl border border-slate-800 bg-slate-900/60 hover:border-slate-700 text-left transition-all";
-                    btn.querySelector('span').className = "text-xs font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-400";
-                }
-            }
+          <div>
+            <label class="block text-xs font-bold text-slate-800 uppercase mb-2">Student Register Number *</label>
+            <input type="text" id="regNo" required placeholder="e.g. 912321104001" class="w-full px-4 py-3 rounded-xl border border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-600 bg-sky-50 text-slate-900 text-sm">
+          </div>
+        </div>
 
-            // Render Content
-            const step = timelineSteps[stepNum];
-            const contentCard = document.getElementById('stepContentCard');
-            contentCard.innerHTML = `
-                <div class="flex flex-col md:flex-row justify-between md:items-center gap-4 border-b border-slate-800 pb-4 mb-4">
-                    <div>
-                        <span class="text-xs font-mono text-cyan-400 uppercase tracking-wider">${step.timeframe}</span>
-                        <h3 class="text-2xl font-bold text-white mt-1">${step.title}</h3>
-                    </div>
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-xs w-fit">
-                        <i class="fa-solid fa-shield-halved"></i> Badge: ${step.badge}
-                    </span>
-                </div>
-                <p class="text-slate-300 text-sm leading-relaxed mb-6">${step.details}</p>
-                <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800/80 flex items-center justify-between">
-                    <span class="text-xs text-slate-400 font-mono">REQUIRED DELIVERABLE:</span>
-                    <span class="text-xs font-semibold text-emerald-400 font-mono">${step.deliverable}</span>
-                </div>
-            `;
-        }
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-xs font-bold text-slate-800 uppercase mb-2">Department / Branch *</label>
+            <select id="department" required class="w-full px-4 py-3 rounded-xl border border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-600 bg-sky-50 text-slate-900 text-sm">
+              <option value="">Select Branch</option>
+              <option value="CSE">Computer Science & Engineering</option>
+              <option value="IT">Information Technology</option>
+              <option value="ECE">Electronics & Communication</option>
+              <option value="EEE">Electrical & Electronics</option>
+              <option value="MECH">Mechanical Engineering</option>
+              <option value="CIVIL">Civil Engineering</option>
+              <option value="AI_DS">AI & Data Science</option>
+            </select>
+          </div>
 
-        // Handle Track selection from cards
-        function selectTrackOption(trackVal) {
-            const trackSelect = document.getElementById('trackChoice');
-            trackSelect.value = trackVal;
-        }
+          <div>
+            <label class="block text-xs font-bold text-slate-800 uppercase mb-2">Year of Study *</label>
+            <select id="year" required class="w-full px-4 py-3 rounded-xl border border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-600 bg-sky-50 text-slate-900 text-sm">
+              <option value="">Select Year</option>
+              <option value="1">1st Year</option>
+              <option value="2">2nd Year</option>
+              <option value="3">3rd Year</option>
+              <option value="4">4th Year</option>
+            </select>
+          </div>
+        </div>
 
-        // Registration Submission
-        function handleRegistration(e) {
-            e.preventDefault();
-            const name = document.getElementById('fullName').value;
-            const branch = document.getElementById('branch').value;
-            const college = document.getElementById('collegeName').value;
-            const trackSelect = document.getElementById('trackChoice');
-            const trackText = trackSelect.options[trackSelect.selectedIndex].text;
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-xs font-bold text-slate-800 uppercase mb-2">College Email Address *</label>
+            <input type="email" id="email" required placeholder="student@srmmadurai.edu.in" class="w-full px-4 py-3 rounded-xl border border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-600 bg-sky-50 text-slate-900 text-sm">
+          </div>
 
-            // Fill confirmation details
-            document.getElementById('confName').textContent = name;
-            document.getElementById('confBranch').textContent = branch;
-            document.getElementById('confCollege').textContent = college;
-            document.getElementById('confTrack').textContent = trackText;
-            document.getElementById('confId').textContent = '#ENG-' + Math.floor(1000 + Math.random() * 9000);
+          <div>
+            <label class="block text-xs font-bold text-slate-800 uppercase mb-2">Preferred Challenge Track *</label>
+            <select id="track" required class="w-full px-4 py-3 rounded-xl border border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-600 bg-sky-50 text-slate-900 text-sm">
+              <option value="">Select Track</option>
+              <option value="CSE & IT">CSE & IT Track</option>
+              <option value="ECE & EEE">ECE & EEE Track</option>
+              <option value="Mechanical & Automation">Mechanical & Automation</option>
+              <option value="Civil & Infrastructure">Civil & Infrastructure</option>
+            </select>
+          </div>
+        </div>
 
-            // Add participant to Leaderboard table dynamically
-            leaderboardData.unshift({
-                rank: "-",
-                name: name,
-                college: college,
-                branch: branch,
-                summaries: 0,
-                points: 100 // Welcome points
-            });
-            renderLeaderboard();
+        <button type="submit" class="w-full bg-sky-700 hover:bg-sky-800 text-white font-bold py-3.5 rounded-xl shadow-md transition text-sm">
+          Complete Registration
+        </button>
+      </form>
 
-            // Toggle visibility
-            document.getElementById('registrationForm').classList.add('hidden');
-            document.getElementById('registrationSuccessCard').classList.remove('hidden');
-        }
+      <!-- Confirmation Badge (Hidden by Default) -->
+      <div id="confirmBadge" class="hidden mt-6 p-6 bg-sky-300/80 border border-sky-400 rounded-2xl text-center">
+        <div class="w-12 h-12 bg-sky-700 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h4 class="font-bold text-sky-950 text-lg">Registration Successful!</h4>
+        <p class="text-xs text-sky-900 font-medium mt-1" id="confirmText">
+          Thank you for registering. Your details have been recorded for SRM Madurai College.
+        </p>
+      </div>
+    </div>
+  </section>
 
-        function closeSuccessCard() {
-            document.getElementById('registrationSuccessCard').classList.add('hidden');
-            document.getElementById('registrationForm').classList.remove('hidden');
-        }
+  <!-- Footer -->
+  <footer class="bg-sky-300 border-t border-sky-400 text-sky-950 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+      <p class="font-bold text-base text-slate-900">SRM Madurai College for Engineering and Technology</p>
+      <p class="text-sky-900 text-xs mt-1 font-semibold">Engineering Reading Challenge Competition 2026</p>
+      <p class="text-sky-800 text-xs mt-6">&copy; 2026 SRM Madurai College. All rights reserved.</p>
+    </div>
+  </footer>
 
-        function resetRegistrationForm() {
-            document.getElementById('registrationForm').reset();
-            closeSuccessCard();
-        }
+  <script>
+    function handleRegistration(event) {
+      event.preventDefault();
+      const name = document.getElementById('fullName').value;
+      const regNo = document.getElementById('regNo').value;
+      const track = document.getElementById('track').value;
 
-        // Certificate Name Live Preview
-        function updateCertificatePreview() {
-            const val = document.getElementById('certNameInput').value;
-            document.getElementById('certPreviewName').textContent = val.trim() || "Your Name";
-        }
+      document.getElementById('confirmText').innerText = 
+        `Welcome ${name} (${regNo})! You are registered for the ${track} track at SRM Madurai College for Engineering and Technology.`;
 
-        // Leaderboard Mock Data & Logic
-        const leaderboardData = [
-            { rank: 1, name: "Elena Rostova", college: "ETH Zurich", branch: "Computer Science", summaries: 8, points: 1450, track: "ai" },
-            { rank: 2, name: "Marcus Vance", college: "Stanford University", branch: "Electrical Engineering", summaries: 7, points: 1320, track: "ai" },
-            { rank: 3, name: "Devan Patel", college: "IIT Madras", branch: "Mechanical Eng", summaries: 7, points: 1290, track: "mech" },
-            { rank: 4, name: "Chloe Bennett", college: "Imperial College London", branch: "Aero & Robotics", summaries: 6, points: 1140, track: "ai" },
-            { rank: 5, name: "Liam O'Connor", college: "UC Berkeley", branch: "Civil Engineering", summaries: 5, points: 980, track: "mech" }
-        ];
-
-        function renderLeaderboard(filter = 'all') {
-            const tbody = document.getElementById('leaderboardBody');
-            tbody.innerHTML = '';
-
-            let list = leaderboardData;
-            if (filter === 'ai') list = leaderboardData.filter(d => d.track === 'ai' || !d.track);
-            if (filter === 'mech') list = leaderboardData.filter(d => d.track === 'mech' || !d.track);
-
-            list.forEach((item, index) => {
-                const rankDisplay = item.rank !== "-" ? `#${index + 1}` : "NEW";
-                const row = document.createElement('tr');
-                row.className = "hover:bg-slate-900/50 transition-colors";
-                row.innerHTML = `
-                    <td class="py-3 px-2 font-bold ${index === 0 ? 'text-amber-400' : index === 1 ? 'text-slate-300' : index === 2 ? 'text-amber-600' : 'text-slate-500'}">${rankDisplay}</td>
-                    <td class="py-3 font-semibold text-white">${item.name}</td>
-                    <td class="py-3 text-slate-400">${item.branch} <span class="text-slate-600 text-[10px] block font-sans">${item.college}</span></td>
-                    <td class="py-3 text-right text-slate-300">${item.summaries} logs</td>
-                    <td class="py-3 text-right font-bold text-cyan-400">${item.points} pts</td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        function filterLeaderboard(filterType) {
-            document.querySelectorAll('.lb-filter').forEach(btn => {
-                btn.className = "lb-filter text-xs px-3 py-1.5 rounded-lg bg-slate-900 text-slate-400 hover:bg-slate-800";
-            });
-            event.target.className = "lb-filter active text-xs px-3 py-1.5 rounded-lg bg-slate-800 text-white hover:bg-slate-700";
-            renderLeaderboard(filterType);
-        }
-
-        // Reading Log Submission Simulator
-        function submitReadingLog() {
-            const title = document.getElementById('logTitle').value;
-            const summary = document.getElementById('logSummary').value;
-            const pages = document.getElementById('logPages').value;
-
-            if(!title || !summary) {
-                alert("Please fill in both the Title and Technical Summary fields.");
-                return;
-            }
-
-            // Update top entry on leaderboard for simulation
-            if (leaderboardData.length > 0) {
-                leaderboardData[0].summaries += 1;
-                leaderboardData[0].points += 150;
-                renderLeaderboard();
-            }
-
-            alert(`Summary for "${title}" successfully logged! +150 Points awarded to your dashboard.`);
-            document.getElementById('logTitle').value = '';
-            document.getElementById('logSummary').value = '';
-            document.getElementById('logPages').value = '';
-        }
-
-        // Initialize defaults on window load
-        window.onload = function() {
-            switchStep(1);
-            renderLeaderboard();
-        };
-    </script>
+      document.getElementById('regForm').reset();
+      document.getElementById('confirmBadge').classList.remove('hidden');
+    }
+  </script>
 </body>
 </html>
