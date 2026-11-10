@@ -210,7 +210,7 @@
         </div>
       </div>
 
-      <!-- CENTERED ADMIN REGISTRATION FORM TABLE (ONE BELOW THE OTHER) -->
+      <!-- CENTERED ADMIN REGISTRATION FORM TABLE -->
       <div id="adminAuthBox" class="bg-sky-50 border border-sky-300 rounded-2xl p-6 sm:p-8 mb-6 no-print text-center max-w-xl mx-auto shadow-sm">
         
         <h4 class="text-2xl font-extrabold text-sky-950 uppercase tracking-wide mb-6">
@@ -238,12 +238,12 @@
                   </td>
                 </tr>
 
-                <!-- Row 3: Department & Branch -->
+                <!-- Row 3: Department & Branch Dropdown -->
                 <tr>
                   <td class="p-3 font-extrabold text-slate-700 uppercase bg-sky-100/70">Department & Branch *</td>
                   <td class="p-3">
                     <select id="adminDeptFilter" required class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-slate-50 focus:ring-2 focus:ring-sky-600 font-semibold">
-                      <option value="ALL">All Departments</option>
+                      <option value="">Select Department & Branch</option>
                       <option value="B.E. CSE">B.E. Computer Science & Engineering (CSE)</option>
                       <option value="B.Tech IT">B.Tech Information Technology (IT)</option>
                       <option value="B.Tech AI&DS">B.Tech AI & Data Science (AI&DS)</option>
@@ -257,12 +257,12 @@
                   </td>
                 </tr>
 
-                <!-- Row 4: Year of Study -->
+                <!-- Row 4: Year of Study Dropdown -->
                 <tr>
                   <td class="p-3 font-extrabold text-slate-700 uppercase bg-sky-100/70">Year of Study *</td>
                   <td class="p-3">
                     <select id="adminYearFilter" required class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-slate-50 focus:ring-2 focus:ring-sky-600 font-semibold">
-                      <option value="ALL">All Years</option>
+                      <option value="">Select Year of Study</option>
                       <option value="1st Year">1st Year</option>
                       <option value="2nd Year">2nd Year</option>
                       <option value="3rd Year">3rd Year</option>
@@ -289,19 +289,22 @@
 
       <!-- Admin Welcome Banner -->
       <div id="adminWelcomeBanner" class="hidden bg-emerald-100 border border-emerald-300 text-emerald-950 p-4 rounded-2xl mb-6 flex justify-between items-center text-center">
-        <h4 class="text-xl font-extrabold w-full text-center" id="adminWelcomeText">Welcome Username!</h4>
+        <div>
+          <h4 class="text-xl font-extrabold" id="adminWelcomeText">Welcome Username!</h4>
+          <p class="text-xs text-emerald-800 font-semibold" id="adminFilterDetails"></p>
+        </div>
         <button onclick="adminLogout()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-3 py-1.5 rounded-lg shadow shrink-0">Logout</button>
       </div>
 
-      <!-- Admin Content (Visible upon Admin Registration/Login) -->
+      <!-- Admin Content (Visible upon Admin Login) -->
       <div id="adminContent" class="hidden">
         <div class="flex flex-col sm:flex-row justify-between items-center mb-4 gap-2">
           <h4 class="text-lg font-bold text-slate-900 uppercase tracking-wide"><i class="fa-solid fa-book-bookmark text-sky-700 mr-2"></i>Registered Books & Evaluation</h4>
           
           <div class="flex items-center gap-3">
-            <input type="text" id="searchInput" onkeyup="filterAdminData()" placeholder="Search Name or Reg No..." class="px-3 py-1.5 border border-slate-300 rounded-lg text-xs bg-slate-50">
+            <input type="text" id="searchInput" onkeyup="renderFilteredAdminTable()" placeholder="Search Name or Reg No..." class="px-3 py-1.5 border border-slate-300 rounded-lg text-xs bg-slate-50">
             <div class="bg-sky-50 border border-sky-200 rounded-lg px-3 py-1.5 text-center">
-              <span class="text-xs text-sky-800 font-bold uppercase">Students:</span>
+              <span class="text-xs text-sky-800 font-bold uppercase">Assigned Students:</span>
               <span id="adminStudentCount" class="text-sm font-extrabold text-sky-900 ml-1">0</span>
             </div>
           </div>
@@ -342,16 +345,20 @@
   <script>
     let activeStudent = null;
     let activeAdminUser = localStorage.getItem('srm_active_admin') || "";
+    let activeAdminDept = localStorage.getItem('srm_active_admin_dept') || "";
+    let activeAdminYear = localStorage.getItem('srm_active_admin_year') || "";
     let students = JSON.parse(localStorage.getItem('srm_students_db')) || [];
 
-    if(activeAdminUser) {
-      showAdminDashboard(activeAdminUser);
+    if(activeAdminUser && activeAdminDept && activeAdminYear) {
+      showAdminDashboard(activeAdminUser, activeAdminDept, activeAdminYear);
     }
 
     function handleAdminLogin(e) {
       e.preventDefault();
       const uname = document.getElementById('adminUsername').value;
       const pwd = document.getElementById('adminPassword').value;
+      const dept = document.getElementById('adminDeptFilter').value;
+      const year = document.getElementById('adminYearFilter').value;
 
       if(uname.length > 20) {
         alert("Username length must not exceed 20 characters.");
@@ -366,26 +373,42 @@
         return;
       }
 
+      if(!dept || !year) {
+        alert("Please select both Department & Branch and Year of Study.");
+        return;
+      }
+
       activeAdminUser = uname;
+      activeAdminDept = dept;
+      activeAdminYear = year;
+
       localStorage.setItem('srm_active_admin', uname);
-      showAdminDashboard(uname);
+      localStorage.setItem('srm_active_admin_dept', dept);
+      localStorage.setItem('srm_active_admin_year', year);
+
+      showAdminDashboard(uname, dept, year);
     }
 
     function clearAdminLoginForm() {
       document.getElementById('adminLoginForm').reset();
     }
 
-    function showAdminDashboard(uname) {
+    function showAdminDashboard(uname, dept, year) {
       document.getElementById('adminAuthBox').classList.add('hidden');
       document.getElementById('adminWelcomeBanner').classList.remove('hidden');
       document.getElementById('adminWelcomeText').innerText = `Welcome ${uname}!`;
+      document.getElementById('adminFilterDetails').innerText = `Assigned Evaluation Scope: ${dept} (${year})`;
       document.getElementById('adminContent').classList.remove('hidden');
-      filterAdminData();
+      renderFilteredAdminTable();
     }
 
     function adminLogout() {
       localStorage.removeItem('srm_active_admin');
+      localStorage.removeItem('srm_active_admin_dept');
+      localStorage.removeItem('srm_active_admin_year');
       activeAdminUser = "";
+      activeAdminDept = "";
+      activeAdminYear = "";
       document.getElementById('adminAuthBox').classList.remove('hidden');
       document.getElementById('adminWelcomeBanner').classList.add('hidden');
       document.getElementById('adminContent').classList.add('hidden');
@@ -494,7 +517,7 @@
 
       localStorage.setItem('srm_students_db', JSON.stringify(students));
       loadStudentPortal(activeStudent);
-      filterAdminData();
+      renderFilteredAdminTable();
 
       alert(`Registration Submitted successfully for ${name}!`);
       document.getElementById('student-portal').scrollIntoView({ behavior: 'smooth' });
@@ -594,20 +617,19 @@
         students[idx] = activeStudent;
         localStorage.setItem('srm_students_db', JSON.stringify(students));
         loadStudentPortal(activeStudent);
-        filterAdminData();
+        renderFilteredAdminTable();
         alert(`Progress updated for "${activeStudent.books[bookIdx].name}"!`);
       }
     }
 
-    function filterAdminData() {
-      const dept = document.getElementById('adminDeptFilter').value;
-      const year = document.getElementById('adminYearFilter').value;
+    // Filter function enforcing Admin's registered Dept and Year
+    function renderFilteredAdminTable() {
       const searchElem = document.getElementById('searchInput');
       const query = searchElem ? searchElem.value.toLowerCase() : '';
 
       const filtered = students.filter(s => {
-        const matchesDept = (dept === 'ALL' || s.dept === dept);
-        const matchesYear = (year === 'ALL' || s.year === year);
+        const matchesDept = (s.dept === activeAdminDept);
+        const matchesYear = (s.year === activeAdminYear);
         const matchesSearch = s.name.toLowerCase().includes(query) || s.regNo.toLowerCase().includes(query);
         return matchesDept && matchesYear && matchesSearch;
       });
@@ -622,7 +644,7 @@
       document.getElementById('adminStudentCount').innerText = data.length;
 
       if(data.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-500 font-semibold">No registered students found matching selected filters.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-500 font-semibold">No registered students found for ${activeAdminDept} (${activeAdminYear}).</td></tr>`;
         return;
       }
 
@@ -685,7 +707,7 @@
           loadStudentPortal(activeStudent);
         }
         
-        filterAdminData();
+        renderFilteredAdminTable();
         alert(`Presentation Mark of ${markVal} assigned by Admin "${activeAdminUser}" for "${students[sIdx].books[bookIdx].name}".`);
       }
     }
@@ -708,4 +730,3 @@
   </script>
 </body>
 </html>
-Steps to U
