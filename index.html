@@ -147,13 +147,13 @@
         </form>
       </div>
 
-      <!-- Admin Welcome Banner -->
-      <div id="adminWelcomeBanner" class="hidden bg-emerald-100 border border-emerald-300 text-emerald-950 p-4 rounded-2xl mb-6 flex justify-between items-center text-center">
-        <div>
-          <h4 class="text-xl font-extrabold" id="adminWelcomeText">Welcome Username!</h4>
-          <p class="text-xs text-emerald-800 font-semibold" id="adminFilterDetails"></p>
-        </div>
-        <button onclick="adminLogout()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-3 py-1.5 rounded-lg shadow shrink-0">Logout</button>
+      <!-- CENTERED ADMIN WELCOME BANNER -->
+      <div id="adminWelcomeBanner" class="hidden bg-emerald-100 border border-emerald-300 text-emerald-950 p-6 rounded-2xl mb-6 text-center shadow-sm relative">
+        <h4 class="text-2xl sm:text-3xl font-extrabold text-center text-emerald-950" id="adminWelcomeText">Welcome admin username!!</h4>
+        <p class="text-xs text-emerald-800 font-semibold mt-1 text-center" id="adminFilterDetails"></p>
+        <button onclick="adminLogout()" class="mt-4 sm:mt-0 sm:absolute sm:top-6 sm:right-6 bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-lg shadow transition">
+          Logout
+        </button>
       </div>
 
       <!-- Admin Content (Visible upon Admin Login) -->
@@ -366,12 +366,12 @@
           <thead class="bg-sky-100 text-sky-950 font-bold uppercase text-[11px] border-b border-sky-300">
             <tr>
               <th class="p-3">#</th>
-              <th class="p-3">Book Name</th>
-              <th class="p-3">Author of the Book</th>
-              <th class="p-3">No. of Pages</th>
-              <th class="p-3">Status of Reading</th>
-              <th class="p-3">Date of Completion</th>
-              <th class="p-3">Handwritten Review (250-300 Words)</th>
+              <th class="p-3">Book Name *</th>
+              <th class="p-3">Author of the Book *</th>
+              <th class="p-3">No. of Pages *</th>
+              <th class="p-3">Status of Reading *</th>
+              <th class="p-3">Date of Completion *</th>
+              <th class="p-3">Handwritten Review (250-300 Words) *</th>
               <th class="p-3">Presentation Mark</th>
               <th class="p-3">Action</th>
             </tr>
@@ -427,7 +427,6 @@
         return;
       }
 
-      // Check existing admin credential or register new
       const existing = credentialsDb.find(c => c.email === email && c.role === 'admin');
       if(existing) {
         if(existing.username.toLowerCase() !== uname.toLowerCase() || existing.password !== pwd) {
@@ -454,8 +453,8 @@
     function showAdminDashboard(uname, dept, year) {
       document.getElementById('adminAuthBox').classList.add('hidden');
       document.getElementById('adminWelcomeBanner').classList.remove('hidden');
-      document.getElementById('adminWelcomeText').innerText = `Welcome ${uname}!`;
-      document.getElementById('adminFilterDetails').innerText = `Assigned Evaluation Scope: ${dept} (${year})`;
+      document.getElementById('adminWelcomeText').innerText = `Welcome ${uname}!!`;
+      document.getElementById('adminFilterDetails').innerText = `Assigned Scope: ${dept} (${year})`;
       document.getElementById('adminContent').classList.remove('hidden');
       renderFilteredAdminTable();
     }
@@ -494,7 +493,6 @@
         return;
       }
 
-      // Check existing student credentials
       const existing = credentialsDb.find(c => c.email === email && c.role === 'student');
       if(existing) {
         if(existing.username.toLowerCase() !== uname.toLowerCase() || existing.password !== pwd) {
@@ -519,7 +517,6 @@
       document.getElementById('studentLoginForm').reset();
     }
 
-    // Reset Credentials via Verified Mail Prompt
     function triggerResetCredentials(role) {
       const emailInput = prompt(`[${role.toUpperCase()} CREDENTIAL RESET]\nPlease enter your Verified Email ID:`);
       if(!emailInput) return;
@@ -704,20 +701,26 @@
 
         row.innerHTML = `
           <td class="p-3 font-bold">${idx + 1}</td>
-          <td class="p-3 font-semibold text-slate-900">${b.name}</td>
-          <td class="p-3">${b.author}</td>
-          <td class="p-3 font-bold text-center">${b.pages}</td>
           <td class="p-3">
-            <select onchange="updateBookField(${idx}, 'status', this.value)" class="px-2 py-1 border border-slate-300 rounded bg-white text-xs font-semibold">
+            <input type="text" value="${b.name}" id="bName_${idx}" onchange="updateBookField(${idx}, 'name', this.value)" class="px-2 py-1 border border-slate-300 rounded bg-white text-xs w-full font-semibold">
+          </td>
+          <td class="p-3">
+            <input type="text" value="${b.author}" id="bAuthor_${idx}" onchange="updateBookField(${idx}, 'author', this.value)" class="px-2 py-1 border border-slate-300 rounded bg-white text-xs w-full">
+          </td>
+          <td class="p-3 font-bold text-center">
+            <input type="number" min="1" value="${b.pages}" id="bPages_${idx}" onchange="updateBookField(${idx}, 'pages', this.value)" class="px-2 py-1 border border-slate-300 rounded bg-white text-xs w-16 text-center">
+          </td>
+          <td class="p-3">
+            <select id="bStatus_${idx}" onchange="updateBookField(${idx}, 'status', this.value)" class="px-2 py-1 border border-slate-300 rounded bg-white text-xs font-semibold">
               <option value="Not Completed" ${b.status === 'Not Completed' ? 'selected' : ''}>Not Completed</option>
               <option value="Completed" ${b.status === 'Completed' ? 'selected' : ''}>Completed</option>
             </select>
           </td>
           <td class="p-3">
-            <input type="date" value="${b.completionDate}" onchange="updateBookField(${idx}, 'completionDate', this.value)" class="px-2 py-1 border border-slate-300 rounded bg-white text-xs">
+            <input type="date" id="bDate_${idx}" value="${b.completionDate}" onchange="updateBookField(${idx}, 'completionDate', this.value)" class="px-2 py-1 border border-slate-300 rounded bg-white text-xs">
           </td>
           <td class="p-3 max-w-xs">
-            <textarea onchange="validateReviewWordCount(${idx}, this.value)" placeholder="Write review (250-300 words)..." class="w-full p-2 border border-slate-300 rounded text-xs bg-white" rows="2">${b.reviewText}</textarea>
+            <textarea id="bReview_${idx}" onchange="validateReviewWordCount(${idx}, this.value)" placeholder="Write review (250-300 words)..." class="w-full p-2 border border-slate-300 rounded text-xs bg-white" rows="2">${b.reviewText}</textarea>
             ${fileBadgeInsideText}
             ${fileButtonControls}
           </td>
@@ -735,10 +738,6 @@
     }
 
     function validateReviewWordCount(bookIdx, text) {
-      const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
-      if(text.length > 0 && (words < 250 || words > 300)) {
-        alert(`Notice: Review currently has ${words} words. Required length is 250-300 words.`);
-      }
       activeStudent.books[bookIdx].reviewText = text;
     }
 
@@ -757,7 +756,24 @@
       activeStudent.books[bookIdx][key] = val;
     }
 
+    // MANDATORY FIELDS VALIDATION BEFORE SAVING PROGRESS
     function saveSingleBookProgress(bookIdx) {
+      const b = activeStudent.books[bookIdx];
+      const reviewText = (b.reviewText || "").trim();
+      const wordCount = reviewText ? reviewText.split(/\s+/).filter(w => w.length > 0).length : 0;
+
+      // Validation check for all required fields
+      if (!b.name || !b.name.trim() ||
+          !b.author || !b.author.trim() ||
+          !b.pages || b.pages <= 0 ||
+          !b.status ||
+          !b.completionDate || !b.completionDate.trim() ||
+          !reviewText || wordCount < 250 || wordCount > 300) {
+        
+        alert("All fields (Book Name, Author of the Book, No. of Pages, Status of Reading, Date of Completion, and Handwritten Review of 250-300 words) are mandatory before saving!");
+        return;
+      }
+
       activeStudent.books[bookIdx].isSaved = true;
       const idx = students.findIndex(s => s.regNo === activeStudent.regNo);
       if(idx >= 0) {
@@ -765,7 +781,7 @@
         localStorage.setItem('srm_students_db', JSON.stringify(students));
         loadStudentPortal(activeStudent);
         renderFilteredAdminTable();
-        alert(`Progress updated for "${activeStudent.books[bookIdx].name}"!`);
+        alert(`Progress saved successfully for "${activeStudent.books[bookIdx].name}"!`);
       }
     }
 
@@ -877,4 +893,3 @@
   </script>
 </body>
 </html>
-Steps to Sav
