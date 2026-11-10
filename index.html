@@ -25,13 +25,16 @@
         <img src="logo.png" alt="SRM Madurai College Header Banner" class="h-14 sm:h-20 object-contain w-auto" onerror="this.onerror=null; this.src='https://via.placeholder.com/600x100?text=SRM+MADURAI+COLLEGE+FOR+ENGINEERING+AND+TECHNOLOGY';">
       </div>
 
-      <!-- Navigation (Registration Menu Removed) -->
-      <nav class="flex items-center gap-6 text-sm font-semibold text-sky-900 mt-1">
-        <a href="#student-portal" class="hover:text-sky-600 transition text-base font-bold">
-          <i class="fa-solid fa-user-graduate mr-1.5 text-sky-700"></i> Student Portal
+      <!-- Navigation Bar with Action Buttons -->
+      <nav class="flex flex-wrap items-center justify-center gap-4 text-sm font-semibold text-sky-900 mt-1">
+        <a href="#register" class="bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm px-5 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
+          <i class="fa-solid fa-user-plus"></i> Registration
         </a>
-        <a href="#admin" class="bg-sky-700 hover:bg-sky-800 text-white font-semibold text-base px-5 py-2 rounded-lg shadow-md transition">
-          <i class="fa-solid fa-user-shield mr-1.5"></i> Admin Portal
+        <a href="#student-portal" class="bg-sky-700 hover:bg-sky-800 text-white font-bold text-sm px-5 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
+          <i class="fa-solid fa-user-graduate"></i> Student Portal
+        </a>
+        <a href="#admin" class="bg-slate-800 hover:bg-slate-900 text-white font-bold text-sm px-5 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
+          <i class="fa-solid fa-user-shield"></i> Admin Portal
         </a>
       </nav>
     </div>
@@ -40,7 +43,6 @@
   <!-- Hero Section -->
   <section class="relative bg-sky-100 py-10 border-b border-sky-200 no-print text-center">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Big Font SRM Madurai Campus Annual Competition -->
       <div class="inline-flex items-center gap-2 bg-sky-200 border border-sky-300 text-sky-950 text-xl sm:text-3xl font-black px-8 py-3 rounded-full mb-4 shadow-sm">
         <i class="fa-solid fa-award text-sky-700 text-3xl"></i> SRM Madurai Campus Annual Competition
       </div>
@@ -54,7 +56,6 @@
   <section id="register" class="py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 no-print">
     <div class="bg-sky-200/90 border border-sky-300 rounded-3xl p-6 sm:p-10 shadow-md">
       
-      <!-- Big Font Student Portal Header & Next Line Registration Form -->
       <div class="text-center mb-8">
         <h3 class="text-3xl sm:text-4xl font-extrabold text-sky-950">Student Portal</h3>
         <h4 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Registration Form</h4>
@@ -115,7 +116,7 @@
         </div>
 
         <div id="bookContainer" class="space-y-4">
-          <!-- Book Entry Row 1 with Delete Option -->
+          <!-- Book Entry Row 1 -->
           <div class="book-row bg-sky-100 p-4 rounded-2xl border border-sky-300 grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
             <div class="sm:col-span-4">
               <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Book Name *</label>
@@ -141,8 +142,9 @@
           <i class="fa-solid fa-plus mr-1"></i> Add Another Book
         </button>
 
-        <button type="submit" class="w-full bg-sky-800 hover:bg-sky-900 text-white font-extrabold py-3.5 rounded-xl shadow-lg transition text-base mt-4">
-          Submit Registration & Generate Portal
+        <!-- Replaced label with "Submit" -->
+        <button type="submit" class="w-full bg-sky-800 hover:bg-sky-900 text-white font-extrabold py-3.5 rounded-xl shadow-lg transition text-lg mt-4">
+          Submit
         </button>
       </form>
     </div>
@@ -152,7 +154,7 @@
   <section id="student-portal" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 no-print">
     <div class="bg-white border border-sky-300 rounded-3xl p-6 sm:p-8 shadow-lg">
       
-      <!-- Top Banner: Right Corner Details -->
+      <!-- Top Banner -->
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center bg-sky-700 text-white p-6 rounded-2xl mb-8 shadow-md">
         <div>
           <h2 class="text-2xl sm:text-3xl font-extrabold" id="portalWelcome">Welcome, Student!</h2>
@@ -168,7 +170,7 @@
 
       <h3 class="text-xl font-extrabold text-slate-900 mb-4"><i class="fa-solid fa-book-open mr-2 text-sky-700"></i>My Book Reading Status</h3>
 
-      <!-- Student Book Reading Status Table -->
+      <!-- Student Book Reading Table -->
       <div class="overflow-x-auto border border-slate-200 rounded-xl">
         <table class="w-full text-left text-xs text-slate-700">
           <thead class="bg-sky-100 text-sky-950 font-bold uppercase text-[11px] border-b border-sky-300">
@@ -203,7 +205,8 @@
       <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-200 pb-6 mb-6 gap-4">
         <div>
           <span class="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full uppercase">Faculty & Admin Panel</span>
-          <h3 class="text-2xl font-extrabold text-slate-900 mt-1">Registered Students List & Multi-Book Evaluation</h3>
+          <!-- Replaced text with "Registered Students List" -->
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Registered Students List</h3>
           <p class="text-slate-500 text-xs">SRM Madurai College for Engineering and Technology — Reading Challenge 2026</p>
         </div>
 
@@ -214,6 +217,18 @@
           <button onclick="exportToCSV()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2.5 rounded-lg shadow flex items-center gap-2">
             <i class="fa-solid fa-file-csv"></i> Export CSV (Excel)
           </button>
+        </div>
+      </div>
+
+      <!-- Admin / Judge Registration Block -->
+      <div id="judgeRegCard" class="bg-sky-50 border border-sky-300 rounded-2xl p-4 mb-6 no-print">
+        <h4 class="font-extrabold text-sky-950 text-sm mb-2"><i class="fa-solid fa-gavel mr-1.5 text-sky-700"></i> Judge / Admin Registration</h4>
+        <div class="flex flex-col sm:flex-row items-center gap-3">
+          <input type="text" id="judgeNameInput" placeholder="Enter Judge / Faculty Full Name..." class="w-full sm:w-80 px-3 py-2 border border-sky-300 rounded-lg text-xs bg-white">
+          <button onclick="registerJudge()" class="w-full sm:w-auto bg-sky-700 hover:bg-sky-800 text-white font-bold text-xs px-4 py-2 rounded-lg shadow">
+            Set Active Judge
+          </button>
+          <span id="activeJudgeDisplay" class="text-xs font-bold text-emerald-700 ml-2"></span>
         </div>
       </div>
 
@@ -248,7 +263,7 @@
         </div>
       </div>
 
-      <!-- Admin Registered Students Multi-Book Table -->
+      <!-- Admin Registered Students Table -->
       <div class="overflow-x-auto border border-slate-200 rounded-xl">
         <table class="w-full text-left text-xs text-slate-700">
           <thead class="bg-sky-700 text-white font-bold uppercase text-[11px]">
@@ -281,9 +296,25 @@
 
   <script>
     let activeStudent = null;
+    let activeJudgeName = localStorage.getItem('srm_active_judge') || "";
     let students = JSON.parse(localStorage.getItem('srm_students_db')) || [];
 
-    // Add dynamic book row (Max 20)
+    if(activeJudgeName) {
+      document.getElementById('activeJudgeDisplay').innerText = `Active Judge: ${activeJudgeName}`;
+    }
+
+    function registerJudge() {
+      const jName = document.getElementById('judgeNameInput').value;
+      if(!jName) {
+        alert("Please enter Judge Name.");
+        return;
+      }
+      activeJudgeName = jName;
+      localStorage.setItem('srm_active_judge', jName);
+      document.getElementById('activeJudgeDisplay').innerText = `Active Judge: ${activeJudgeName}`;
+      alert(`Judge registered as "${activeJudgeName}". Evaluations will now include your judge name.`);
+    }
+
     function addBookRow() {
       const container = document.getElementById('bookContainer');
       const currentCount = container.children.length;
@@ -319,7 +350,6 @@
       updateBookCounter();
     }
 
-    // Delete dynamic book row
     function deleteBookRow(btn) {
       const container = document.getElementById('bookContainer');
       if(container.children.length <= 1) {
@@ -335,7 +365,6 @@
       document.getElementById('bookCounter').innerText = `Books Added: ${count}/20`;
     }
 
-    // Handle Registration Submission
     function handleRegistration(e) {
       e.preventDefault();
       const name = document.getElementById('fullName').value;
@@ -362,6 +391,7 @@
           fileUrl: "",
           fileName: "",
           presentationMark: "Pending",
+          judgeName: "",
           saved: false
         });
       });
@@ -389,11 +419,10 @@
       loadStudentPortal(activeStudent);
       renderAdminTable(students);
 
-      alert(`Registration Successful for ${name}! Scroll down to view your Student Dashboard.`);
+      alert(`Registration Submitted successfully for ${name}!`);
       document.getElementById('student-portal').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Render Student Portal Table
     function loadStudentPortal(student) {
       document.getElementById('portalWelcome').innerText = `Welcome, ${student.name}!`;
       document.getElementById('portalRegNo').innerText = student.regNo;
@@ -414,6 +443,8 @@
         const saveBtnHtml = b.saved 
           ? `<button disabled class="bg-gray-400 text-white font-bold px-3 py-1.5 rounded text-xs cursor-not-allowed flex items-center gap-1"><i class="fa-solid fa-check"></i> Saved</button>`
           : `<button onclick="saveSingleBookProgress(${idx})" id="saveBtn_${idx}" class="bg-sky-700 hover:bg-sky-800 text-white font-bold px-3 py-1.5 rounded text-xs shadow">Save</button>`;
+
+        const judgeInfo = b.judgeName ? `<br><span class="text-[9px] text-slate-500 font-semibold">Judge: ${b.judgeName}</span>` : '';
 
         row.innerHTML = `
           <td class="p-3 font-bold">${idx + 1}</td>
@@ -437,7 +468,7 @@
             </div>
           </td>
           <td class="p-3 font-bold text-sky-800 text-center">
-            ${b.presentationMark !== 'Pending' ? `<span class="bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full border border-emerald-300 font-bold">${b.presentationMark} Marks</span>` : `<span class="text-slate-400 font-medium">Pending</span>`}
+            ${b.presentationMark !== 'Pending' ? `<span class="bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full border border-emerald-300 font-bold">${b.presentationMark} Marks</span>${judgeInfo}` : `<span class="text-slate-400 font-medium">Pending</span>`}
           </td>
           <td class="p-3">
             ${saveBtnHtml}
@@ -450,7 +481,7 @@
     function validateReviewWordCount(bookIdx, text) {
       const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
       if(text.length > 0 && (words < 250 || words > 300)) {
-        alert(`Notice: Handwritten review currently has ${words} words. The required length is between 250 and 300 words.`);
+        alert(`Notice: Review has ${words} words. The required length is between 250 and 300 words.`);
       }
       activeStudent.books[bookIdx].reviewText = text;
     }
@@ -478,11 +509,10 @@
         localStorage.setItem('srm_students_db', JSON.stringify(students));
         loadStudentPortal(activeStudent);
         renderAdminTable(students);
-        alert(`Book "${activeStudent.books[bookIdx].name}" progress saved!`);
+        alert(`Progress saved for "${activeStudent.books[bookIdx].name}"!`);
       }
     }
 
-    // Render Admin Table with Multi-Book details
     function renderAdminTable(data) {
       const tbody = document.getElementById('adminTableBody');
       tbody.innerHTML = '';
@@ -494,16 +524,16 @@
       }
 
       data.forEach(s => {
-        let booksSubTable = `
-          <div class="space-y-2 py-1">
-        `;
+        let booksSubTable = `<div class="space-y-2 py-1">`;
         
         s.books.forEach((b, bIdx) => {
+          const evalBy = b.judgeName ? `<span class="text-[10px] text-slate-500 font-semibold"> (Evaluated by Judge: ${b.judgeName})</span>` : '';
+          
           booksSubTable += `
             <div class="bg-sky-50 border border-sky-200 p-2.5 rounded-lg text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
                 <p class="font-bold text-slate-900">${bIdx + 1}. ${b.name} <span class="font-normal text-slate-600">(Author: ${b.author} | Pages: ${b.pages})</span></p>
-                <p class="text-[11px] text-slate-500">Status: <strong>${b.status}</strong> | Completed: <strong>${b.completionDate || 'N/A'}</strong></p>
+                <p class="text-[11px] text-slate-500">Status: <strong>${b.status}</strong> | Completed: <strong>${b.completionDate || 'N/A'}</strong> ${evalBy}</p>
               </div>
               <div class="flex items-center gap-2">
                 <input type="number" placeholder="Mark" id="mark_${s.regNo}_${bIdx}" value="${b.presentationMark !== 'Pending' ? b.presentationMark : ''}" class="w-16 px-2 py-1 border rounded text-xs bg-white font-bold" min="0" max="100">
@@ -530,6 +560,11 @@
     }
 
     function assignBookMark(regNo, bookIdx) {
+      if(!activeJudgeName) {
+        alert("Please enter & register Judge Name in the Judge/Admin panel first.");
+        return;
+      }
+
       const markVal = document.getElementById(`mark_${regNo}_${bookIdx}`).value;
       if(!markVal) {
         alert("Please enter a mark before saving.");
@@ -539,6 +574,7 @@
       const sIdx = students.findIndex(s => s.regNo === regNo);
       if(sIdx >= 0) {
         students[sIdx].books[bookIdx].presentationMark = markVal;
+        students[sIdx].books[bookIdx].judgeName = activeJudgeName;
         localStorage.setItem('srm_students_db', JSON.stringify(students));
         
         if(activeStudent && activeStudent.regNo === regNo) {
@@ -546,7 +582,8 @@
           loadStudentPortal(activeStudent);
         }
         
-        alert(`Presentation Mark of ${markVal} assigned for "${students[sIdx].books[bookIdx].name}" (Reg No: ${regNo})`);
+        renderAdminTable(students);
+        alert(`Mark of ${markVal} assigned by Judge "${activeJudgeName}" for "${students[sIdx].books[bookIdx].name}".`);
       }
     }
 
@@ -564,10 +601,10 @@
     }
 
     function exportToCSV() {
-      let csv = "data:text/csv;charset=utf-8,Register No,Student Name,Department,Year,Registration Timestamp,Book Name,Author of Book,No of Pages,Status of Reading,Completion Date,Presentation Mark\n";
+      let csv = "data:text/csv;charset=utf-8,Register No,Student Name,Department,Year,Registration Timestamp,Book Name,Author of Book,No of Pages,Status of Reading,Completion Date,Presentation Mark,Evaluated By Judge\n";
       students.forEach(s => {
         s.books.forEach(b => {
-          csv += `"${s.regNo}","${s.name}","${s.dept}","${s.year}","${s.dateTime}","${b.name}","${b.author}","${b.pages}","${b.status}","${b.completionDate}","${b.presentationMark}"\n`;
+          csv += `"${s.regNo}","${s.name}","${s.dept}","${s.year}","${s.dateTime}","${b.name}","${b.author}","${b.pages}","${b.status}","${b.completionDate}","${b.presentationMark}","${b.judgeName || 'N/A'}"\n`;
         });
       });
       const encodedUri = encodeURI(csv);
@@ -579,7 +616,6 @@
       document.body.removeChild(link);
     }
 
-    // Initial Load
     renderAdminTable(students);
   </script>
 </body>
