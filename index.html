@@ -46,7 +46,7 @@
     </div>
   </section>
 
-  <!-- SECTION 1: ADMIN PORTAL REGISTRATION & LOGIN -->
+  <!-- SECTION 1: ADMIN PORTAL LOGIN -->
   <section id="admin-registration" class="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div id="printableAdminSection" class="bg-white border border-sky-300 rounded-3xl p-6 sm:p-8 shadow-lg">
       
@@ -54,7 +54,7 @@
       <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-200 pb-6 mb-6 gap-4">
         <div>
           <span class="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full uppercase">Faculty & Admin Panel</span>
-          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Registered Students Evaluation</h3>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Faculty & Admin Login</h3>
           <p class="text-slate-500 text-xs">SRM Madurai College for Engineering and Technology — Reading Challenge 2026</p>
         </div>
 
@@ -71,17 +71,17 @@
       <!-- CENTERED ADMIN LOGIN FORM TABLE -->
       <div id="adminAuthBox" class="bg-sky-50 border border-sky-300 rounded-2xl p-6 sm:p-8 mb-6 no-print text-center max-w-xl mx-auto shadow-sm">
         <h4 class="text-2xl font-extrabold text-sky-950 uppercase tracking-wide mb-6">
-          Admin Registration Form
+          Admin Login
         </h4>
         
         <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
-          <div class="overflow-x-auto mb-6">
+          <div class="overflow-x-auto mb-4">
             <table class="w-full text-left text-xs bg-white border border-sky-200 rounded-xl overflow-hidden shadow-sm">
               <tbody class="divide-y divide-sky-100">
                 <tr>
                   <td class="p-3 font-extrabold text-slate-700 uppercase bg-sky-100/70 w-1/3">Username *</td>
                   <td class="p-3">
-                    <input type="text" id="adminUsername" required maxlength="20" placeholder="Max 20 characters" class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-slate-50 focus:ring-2 focus:ring-sky-600">
+                    <input type="text" id="adminUsername" required maxlength="20" placeholder="Unique Username (Max 20 chars)" class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-slate-50 focus:ring-2 focus:ring-sky-600">
                   </td>
                 </tr>
                 <tr>
@@ -121,6 +121,13 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          <!-- Forgot Password Link -->
+          <div class="text-right mb-4">
+            <button type="button" onclick="triggerResetCredentials('admin')" class="text-xs text-sky-700 hover:text-sky-900 font-bold underline">
+              Forgot Username / Password?
+            </button>
           </div>
 
           <div class="flex justify-center gap-4">
@@ -178,7 +185,7 @@
     </div>
   </section>
 
-  <!-- SECTION 2: STUDENT LOGIN FORM (BELOW ADMIN LOGIN) -->
+  <!-- SECTION 2: STUDENT LOGIN FORM -->
   <section id="student-login-section" class="py-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 no-print">
     <div id="studentAuthBox" class="bg-sky-200/90 border border-sky-300 rounded-3xl p-6 sm:p-8 shadow-md text-center max-w-xl mx-auto">
       
@@ -187,7 +194,7 @@
       </h3>
 
       <form id="studentLoginForm" onsubmit="handleStudentLogin(event)">
-        <div class="overflow-x-auto mb-6">
+        <div class="overflow-x-auto mb-4">
           <table class="w-full text-left text-xs bg-white border border-sky-300 rounded-xl overflow-hidden shadow-sm">
             <tbody class="divide-y divide-sky-100">
               
@@ -195,7 +202,7 @@
               <tr>
                 <td class="p-3 font-extrabold text-slate-700 uppercase bg-sky-100/70 w-1/3">Username *</td>
                 <td class="p-3">
-                  <input type="text" id="studentUsername" required maxlength="20" placeholder="Max 20 characters" class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-slate-50 focus:ring-2 focus:ring-sky-600">
+                  <input type="text" id="studentUsername" required maxlength="20" placeholder="Unique Username (Max 20 chars)" class="w-full px-3 py-2 border border-sky-300 rounded-lg text-xs bg-slate-50 focus:ring-2 focus:ring-sky-600">
                 </td>
               </tr>
 
@@ -244,6 +251,13 @@
           </table>
         </div>
 
+        <!-- Forgot Password Link -->
+        <div class="text-right mb-4">
+          <button type="button" onclick="triggerResetCredentials('student')" class="text-xs text-sky-700 hover:text-sky-900 font-bold underline">
+            Forgot Username / Password?
+          </button>
+        </div>
+
         <!-- Next Line Centered Buttons -->
         <div class="flex justify-center gap-4">
           <button type="submit" class="bg-sky-700 hover:bg-sky-800 text-white font-extrabold text-xs px-6 py-2.5 rounded-xl shadow-md transition">
@@ -257,7 +271,7 @@
     </div>
   </section>
 
-  <!-- SECTION 3: STUDENT REGISTRATION & DASHBOARD (ENABLED AFTER STUDENT LOGIN) -->
+  <!-- SECTION 3: STUDENT REGISTRATION & TRACKER -->
   <section id="student-portal" class="hidden py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 no-print">
     
     <!-- Registration Form Block -->
@@ -373,11 +387,17 @@
     
     let activeStudentAuth = null;
     let students = JSON.parse(localStorage.getItem('srm_students_db')) || [];
+    let credentialsDb = JSON.parse(localStorage.getItem('srm_credentials_db')) || [];
+
+    // Unique Username Check Helper
+    function isUsernameTaken(uname) {
+      return credentialsDb.some(c => c.username.toLowerCase() === uname.toLowerCase());
+    }
 
     function handleAdminLogin(e) {
       e.preventDefault();
-      const uname = document.getElementById('adminUsername').value;
-      const pwd = document.getElementById('adminPassword').value;
+      const uname = document.getElementById('adminUsername').value.trim();
+      const pwd = document.getElementById('adminPassword').value.trim();
       const dept = document.getElementById('adminDeptFilter').value;
       const year = document.getElementById('adminYearFilter').value;
 
@@ -395,6 +415,23 @@
       if(!dept || !year) {
         alert("Please select both Department & Branch and Year of Study.");
         return;
+      }
+
+      // Check if credential exists or register new unique account
+      const existing = credentialsDb.find(c => c.username.toLowerCase() === uname.toLowerCase() && c.role === 'admin');
+      if(existing) {
+        if(existing.password !== pwd) {
+          alert("Incorrect password! Use 'Forgot Username/Password' to reset if needed.");
+          return;
+        }
+      } else {
+        if(isUsernameTaken(uname)) {
+          alert("This username is already taken. Please enter a unique username.");
+          return;
+        }
+        // Save new unique admin credential
+        credentialsDb.push({ username: uname, password: pwd, role: 'admin', email: uname.toLowerCase() + '@srmmadurai.edu.in' });
+        localStorage.setItem('srm_credentials_db', JSON.stringify(credentialsDb));
       }
 
       activeAdminUser = uname;
@@ -430,8 +467,8 @@
 
     function handleStudentLogin(e) {
       e.preventDefault();
-      const uname = document.getElementById('studentUsername').value;
-      const pwd = document.getElementById('studentPassword').value;
+      const uname = document.getElementById('studentUsername').value.trim();
+      const pwd = document.getElementById('studentPassword').value.trim();
       const dept = document.getElementById('studentDept').value;
       const year = document.getElementById('studentYear').value;
 
@@ -451,9 +488,23 @@
         return;
       }
 
+      // Check existing student credentials
+      const existing = credentialsDb.find(c => c.username.toLowerCase() === uname.toLowerCase() && c.role === 'student');
+      if(existing) {
+        if(existing.password !== pwd) {
+          alert("Incorrect password! Click 'Forgot Username / Password?' to reset.");
+          return;
+        }
+      } else {
+        if(isUsernameTaken(uname)) {
+          alert("This username is already taken. Please enter a unique username.");
+          return;
+        }
+        credentialsDb.push({ username: uname, password: pwd, role: 'student', email: uname.toLowerCase() + '@srmmadurai.edu.in' });
+        localStorage.setItem('srm_credentials_db', JSON.stringify(credentialsDb));
+      }
+
       activeStudentAuth = { username: uname, dept: dept, year: year };
-      
-      // Auto pre-fill name in the registration form
       document.getElementById('fullName').value = uname;
 
       document.getElementById('student-portal').classList.remove('hidden');
@@ -464,6 +515,42 @@
 
     function clearStudentLoginForm() {
       document.getElementById('studentLoginForm').reset();
+    }
+
+    // Reset Credentials via Email Prompt
+    function triggerResetCredentials(role) {
+      const emailInput = prompt(`[${role.toUpperCase()} RESET]\nPlease enter your registered Email ID:`);
+      if(!emailInput) return;
+
+      const email = emailInput.trim().toLowerCase();
+      if(!email.includes('@') || !email.includes('.')) {
+        alert("Please enter a valid Email ID.");
+        return;
+      }
+
+      const newUname = prompt("Enter your NEW Unique Username (Max 20 chars):");
+      if(!newUname || newUname.trim().length > 20) {
+        alert("Invalid username. Maximum 20 characters allowed.");
+        return;
+      }
+
+      const newPwd = prompt("Enter your NEW Password (Exact 8 Alphanumeric characters):");
+      if(!newPwd || !/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8}$/.test(newPwd)) {
+        alert("Password reset failed. Password must be exactly 8 alphanumeric characters.");
+        return;
+      }
+
+      // Update or Create Record
+      const userIdx = credentialsDb.findIndex(c => c.email === email && c.role === role);
+      if(userIdx >= 0) {
+        credentialsDb[userIdx].username = newUname.trim();
+        credentialsDb[userIdx].password = newPwd.trim();
+      } else {
+        credentialsDb.push({ username: newUname.trim(), password: newPwd.trim(), role: role, email: email });
+      }
+
+      localStorage.setItem('srm_credentials_db', JSON.stringify(credentialsDb));
+      alert(`Credentials Reset Successfully!\n\nEmail: ${email}\nNew Username: ${newUname.trim()}\nNew Password: ${newPwd.trim()}`);
     }
 
     function addBookRow() {
